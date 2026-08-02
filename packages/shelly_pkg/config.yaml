@@ -1,0 +1,86 @@
+# Shelly config
+#shelly:
+#  discovery: true
+ # version: false
+ # id_prefix: ''
+ # settings:
+ #   temperature: { decimals: 1}
+ # sensors:
+ #   - all
+#  devices:  #configure devices
+#    - id: 68C63AFB9C3B
+#      name: "Rollo Bad 1OG"
+#      entity_id: rollo_bad_1og
+#    - id: 68C63AFB79A9
+#      name: "Rollo Wohnzimmer 1"
+#      entity_id: rollo_wohnzimmer_1
+#    - id: 68C63AFB9B8D
+#      name: "Rollo Wohnzimmer 2"
+#      entity_id: rollo_wohnzimmer_2
+#    - id: 68C63AF9B993
+#      name: "Rollo Wohnzimmer 3"
+#      entity_id: rollo_wohnzimmer_3
+#    - id: 68C63AF9BD54
+#      name: "Rollo Wohnzimmer 4"
+#      entity_id: rollo_wohnzimmer_4
+#    - id: 68C63AF9D5DF
+#      name: "Rollo Kueche"
+#      entity_id: rollo_kueche
+#    - id: 68C63AF9D595
+#      name: "Rollo Bad EG"
+#      entity_id: rollo_bad_eg
+#    - id: 68C63AF9D104
+#      name: "Rollo Gabriel 1"
+#      entity_id: rollo_gabriel_1
+#    - id: 68C63AF9CB9D
+#      name: "Rollo Gabriel 2"
+#      entity_id: rollo_gabriel_2    
+#    - id: BCDDC2774B1D
+#      name: "Rollo Alba 1"
+#      entity_id: rollo_alba_1
+#    - id: 500291F049A0 
+#      name: "Rollo Alba 2"
+#      entity_id: rollo_alba_2
+#    - id: 68C63AF98523
+#      name: "Rollo Arbeitszimmer Laura"
+#      entity_id: rollo_azlaura
+#    - id: BCDDC277A6E5
+#      name: "Rollo Arbeitszimmer Romain"
+#      entity_id: rollo_azromain
+#    - id: 68C63AF989C8
+#      name: "Rollo Schlafzimmer R+L"
+#      entity_id: rollo_romainlaura
+#    - id: 244CAB42DE1B
+#      name: "Switch LED Line Links Kueche"
+#      entity_id: switch_led_line_links_kueche
+#    - id: 68C63AF9CF6B
+#      name: "Switch WZ Decke"
+#      entity_id: switch_wz_decke
+#    - id: 500291F06423
+#     name: "Switch WZ Esstisch"
+#      entity_id: switch_wz_esstisch
+#    - id: A4CF12F46467
+#      name: "Switch Bad 1OG Decke"
+#      entity_id: switch_bad1og_decke
+#    - id: A4CF12F49132
+#      name: "Switch Bad 1OG Waschbecken"
+#      entity_id: switch_bad1og_waschbecken
+#    - id: C8C9A315E92A
+#      name: "Flood"
+#      entity_id: flood_detect
+
+# In order to get the updates fast via MQTT, CoAP is not yet available on ShellyForHass
+#mqtt:
+#  binary_sensor:
+#    - name: "Switch LED Line Links Kueche 1 - Switch"
+#      state_topic: "shellies/Switch/LEDLineLinksKueche/relay/1"
+#      payload_on: "on"
+#      payload_off: "off"
+#    - name: "Switch LED Line Links Kueche 2 - Switch"
+#      state_topic: "shellies/Switch/LEDLineLinksKueche/relay/0"
+#      payload_on: "on"
+#      payload_off: "off"
+#    - name: "Switch Bad1OG Decke - Switch"
+#      state_topic: "shellies/Switch/Bad1OGDecke/relay/0"
+#      payload_on: "on"
+#      payload_off: "off"

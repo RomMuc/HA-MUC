@@ -1,0 +1,4 @@
+# Google Calendar
+google:
+  client_id: !secret GoogleCalendarUser
+  client_secret: !secret GoogleCalendarPwd

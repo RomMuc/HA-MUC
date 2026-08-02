@@ -1,0 +1,74 @@
+#Sensors via zigbee platform
+#mqtt:
+#  sensor:
+#Door sensors  
+    # Kueche door sensor
+#    - name: "Küche Door Sensor Battery"
+#      state_topic: "zigbee2mqtt/0x00124b00292b35d4"
+#      availability_topic: "zigbee2mqtt/0x00124b00292b35d4/availability"
+#      icon: mdi:battery
+#      unit_of_measurement: "%"
+#      unique_id: ad963abd-cd18-4360-a1e2-1cc1dc14d018
+#      value_template: "{{ value_json.battery}}"
+#    - name: "Küche Door Sensor Battery Low"
+#      state_topic: "zigbee2mqtt/0x00124b00292b35d4"
+#      availability_topic: "zigbee2mqtt/0x00124b00292b35d4/availability"
+#      unique_id: f29c970c-06db-4368-95c5-d44eaf2a6b8d
+#      icon: mdi:battery-alert
+#      value_template: "{{ value_json.battery_low}}"
+#    - name: "Küche Door Sensor State"
+#      state_topic: "zigbee2mqtt/0x00124b00292b35d4"
+#      availability_topic: "zigbee2mqtt/0x00124b00292b35d4/availability"
+#      unique_id: 3e92b718-4322-4a08-bb49-a5fb07883133
+#      value_template: "{{ value_json.contact}}"
+#    - name: "Küche Door Link Quality"
+#      state_topic: "zigbee2mqtt/0x00124b00292b35d4"
+#      availability_topic: "zigbee2mqtt/0x00124b00292b35d4/availability"
+#      unique_id: 68ea42be-5d53-45d0-a5e5-5847a7f7691d
+#      icon: mdi:rssi
+#      value_template: "{{ value_json.linkquality}}"
+#    - name: "Küche Door Sensor Tamper"
+#      state_topic: "zigbee2mqtt/0x00124b00292b35d4"
+#      availability_topic: "zigbee2mqtt/0x00124b00292b35d4/availability"
+#      unique_id: 6ba54b83-3302-4ad6-a6ce-4bb0fef8516a
+#      value_template: "{{ value_json.tamper}}"
+#    - name: "Küche Door Sensor Voltage"
+#      state_topic: "zigbee2mqtt/0x00124b00292b35d4"
+#      availability_topic: "zigbee2mqtt/0x00124b00292b35d4/availability"
+#      unique_id: 3eee8b69-dee2-44b0-8333-f1523ce525ce
+#      unit_of_measurement: "mV"
+#      value_template: "{{ value_json.voltage}}"
+
+    # Kueche motion window
+#    - name: "Küche Motion Window Battery"
+#      state_topic: "zigbee2mqtt/0x00124b0029118f9c"
+#      availability_topic: "zigbee2mqtt/0x00124b0029118f9c/availability"
+#      unique_id: ad096b18-55d0-406a-ad8c-dbfabe94f628
+#      icon: mdi:battery
+#      unit_of_measurement: "%"
+#      value_template: "{{ value_json.battery}}"
+#    - name: "Küche Motion Window State"
+#      state_topic: "zigbee2mqtt/0x00124b0029118f9c"
+#      availability_topic: "zigbee2mqtt/0x00124b0029118f9c/availability"
+#      unique_id: 72f534ad-2df8-4777-8b64-3e4e43dc06cb
+#      icon: mdi:motion-sensor
+#      value_template: "{{ value_json.occupancy}}"
+
+    # 1.OG motion
+#    - name: "Motion 1OG Battery"
+#      state_topic: "zigbee2mqtt/0x00124b00291192a8"
+#      unique_id: 975270ed-cf42-4939-9c92-f6b1608d365c
+#      icon: mdi:battery
+#      unit_of_measurement: "%"
+#      value_template: "{{ value_json.battery}}"
+#    - name: "Motion 1OG State"
+#      state_topic: "zigbee2mqtt/0x00124b00291192a8"
+#      unique_id: ebc00203-559e-45c6-8e85-5648d565bb6b
+#      icon: mdi:motion-sensor
+#      value_template: "{{ value_json.occupancy}}"
+
+      
+      
+      
+      
+      

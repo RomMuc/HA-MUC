@@ -1,0 +1,47 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+    language: 'de'
+    #base_url: http://192.168.2.192:8123
+
+http:
+  #For duckdns and the reverse proxy config
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.30.33.0/24
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
+#frontend: !include themes.yaml
+#  themes: !include themes.yaml
+
+homeassistant:
+  #Get the right timestamps in the logs
+  time_zone: Europe/Berlin
+  country: DE
+
+  #All packages are described in their own directory
+  #This allows to have "co-located" config for e.g. sensors, lights, etc
+  #Very practical for zigbee2mqtt,Innr, etc, 
+  #but just for the sake of structure for other stuff like Nuki
+  packages: 
+    zigbee2mqtt_pkg: !include packages/zigbee2mqtt_pkg/config.yaml
+    tuya_pkg: !include packages/tuya_pkg/config.yaml
+    qcells_pkg: !include packages/qcells_pkg/config.yaml
+    influxdb_pkg: !include packages/influxdb_pkg/config.yaml
+    bwt_pkg: !include packages/bwt_pkg/config.yaml
+    #Test pkg
+    #test_pkg: !include packages/test_pkg/config.yaml
+  customize: !include customize.yaml
+
+command_line: !include rasp_pi_command_line.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+cover: !include covers.yaml #Grouping rollos per room and/or floors
+
+

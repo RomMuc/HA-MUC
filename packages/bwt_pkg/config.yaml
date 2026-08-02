@@ -1,0 +1,107 @@
+rest:
+  - resource: http://192.168.2.144:8080/api/GetCurrentData
+    username: !secret BWT_user
+    password: !secret BWT_pwd
+    authentication: basic
+    method: GET
+    scan_interval: 5
+    sensor:
+      - name: "bwt_fw"
+        value_template: "{{ value_json.FirmwareVersion }}"
+        unique_id: 43fc01c9-216c-4a2f-9af6-dbbb733c1e3b
+      - name: "bwt_last_regen_col_1"
+        value_template: "{{ value_json.LastRegenerationColumn1 | as_datetime | as_local }}"
+        device_class: timestamp
+        unique_id: c9f79b03-0db4-414c-a9c7-8db41b4e4e36
+      - name: "bwt_last_regen_col_2"
+        value_template: "{{ value_json.LastRegenerationColumn2 | as_datetime | as_local }}"
+        device_class: timestamp
+        unique_id: a732926d-4239-4c73-8971-36edc64a1db1
+      - name: "bwt_last_serv_customer"
+        value_template: "{{ value_json.LastServiceCustomer | as_datetime | as_local }}"
+        device_class: timestamp
+        unique_id: 8f776839-dff4-49d2-9cd6-13a33d25e48a
+      - name: "bwt_last_serv_technician"
+        value_template: "{{ value_json.LastServiceTechnican | as_datetime | as_local }}"
+        device_class: timestamp
+        unique_id: 064031fb-e5fd-49fb-8e9d-e72f8e2f594a
+      - name: "bwt_cap_col1"
+        value_template: "{{ value_json.CapacityColumn1_ml_dH | round(0) }}"
+        unit_of_measurement: "mL.dH"
+        unique_id: def73ff0-caaf-4f07-a26e-40f7e22c126e
+      - name: "bwt_cap_col2"
+        value_template: "{{ value_json.CapacityColumn2_ml_dH | round(0) }}"
+        unit_of_measurement: "mL.dH"
+        unique_id: 45862032-047d-48ae-86ae-da1d899135c8
+      - name: "bwt_water_used_total"
+        value_template: "{{ value_json.BlendedWaterSinceSetup_l }}"
+        unique_id: b8ccf292-14f9-4a1f-9fcf-dfc3d9f12854
+        unit_of_measurement: "L"
+        device_class: water
+        state_class: total_increasing
+      - name: "bwt_water_treated_last_refill"
+        unique_id: 9ddb97c0-a35c-4761-9148-9a6abba9d9f4
+        value_template: "{{ value_json.WaterSinceSetup_l }}"
+        unit_of_measurement: "L"
+        device_class: water
+      - name: "bwt_water_treated_day"
+        unique_id: a26fa9a7-ce1b-41b9-ad88-af771e4e8750
+        value_template: "{{ value_json.WaterTreatedCurrentDay_l }}"
+        unit_of_measurement: "L"
+        device_class: water
+        state_class: total_increasing
+      - name: "bwt_water_treated_month"
+        unique_id: 767a1b20-54fe-4048-a487-2bdb1e862d30
+        value_template: "{{ value_json.WaterTreatedCurrentMonth_l }}"
+        unit_of_measurement: "L"
+        device_class: water
+        state_class: total_increasing
+      - name: "bwt_water_treated_year"
+        unique_id: 8111c8fc-ece8-4779-9925-28e2a06854ef
+        value_template: "{{ value_json.WaterTreatedCurrentYear_l }}"
+        unit_of_measurement: "L"
+        device_class: water
+        state_class: total_increasing
+      - name: "bwt_regenerative_level"
+        unique_id: 16f1ab3c-5e1f-4436-822f-7786c02bfebf
+        value_template: "{{ value_json.RegenerativLevel | round(0) }}"
+        unit_of_measurement: "%"
+      - name: "bwt_regenerative_rem_days"
+        unique_id: aa991b37-c7bc-4176-8d46-cab90de1791b
+        value_template: "{{ value_json.RegenerativRemainingDays | round(0) }}"
+        unit_of_measurement: "days"
+      - name: "bwt_regenerative_used"
+        unique_id: f8e5c8f0-753e-4b22-a37b-dbebbf9e9ab7
+        value_template: "{{ value_json.RegenerativSinceSetup_g | round(0) }}"
+        unit_of_measurement: "g"
+      - name: "bwt_current_flow"
+        unique_id: 3e2cea52-4b69-42ff-b1ae-d8113a7cbdbb
+        value_template: "{{ value_json.CurrentFlowrate_l_h | round(0) }}"
+        unit_of_measurement: "l/h"
+      - name: "bwt_reg_col1_count"
+        unique_id: 57ba0e4a-1bb9-49be-94a8-117f08963b81
+        value_template: "{{ value_json.RegenerationCounterColumn1 | round(0) }}"
+      - name: "bwt_reg_col2_count"
+        unique_id: c256df1a-7d16-4425-abbc-22059b4c1ce3
+        value_template: "{{ value_json.RegenerationCounterColumn2 | round(0) }}"
+      - name: "bwt_active_errors"
+        unique_id: 684c0308-ca8c-4067-bda6-cd72377f12ac
+        value_template: "{{ value_json.ActiveErrorIDs }}"
+      - name: "bwt_holiday_mode"
+        unique_id: 50fdd83e-5516-40a2-9f40-71053f53c6ec
+        value_template: "{{ value_json.HolidayModeStartTime }}"
+      - name: "bwt_state"
+        unique_id: 2145e93d-0efb-4cd0-99c2-365814893bd5
+        device_class: enum
+#        value_template: "{{ state_attr('sensor.bwt', 'ShowError') }}"
+        value_template: >-
+          {% if value_json.ShowError == 0 %}
+            OK
+          {% elif value_json.ShowError == 1 %}
+            Warning
+          {% elif value_json.ShowError == 2 %}
+            Error
+          {% else %}
+            Unknown state
+          {% endif %}
+

@@ -1,0 +1,37 @@
+#Wohnzimmer
+  - platform: group
+    name: Rollo Wohnzimmer
+    entities:
+      - cover.rollo_wz1
+      - cover.rollo_wz2
+      - cover.rollo_wz3
+      - cover.rollo_wz4
+
+#EG
+  - platform: group
+    name: Rollo EG
+    entities:
+      - cover.rollo_wohnzimmer
+      - cover.rollo_bad_eg
+      - cover.rollo_kueche
+      
+#Gabriel
+  - platform: group
+    name: Rollo Gabriel
+    entities:
+      - cover.rollo_gabriel_1
+      - cover.rollo_gabriel_2
+      
+#Alba
+  - platform: group
+    name: Rollo Alba
+    entities:
+      - cover.rollo_alba_1
+      - cover.rollo_alba_2
+      
+#Rollo Kinder
+  - platform: group
+    name: Rollo Kinder
+    entities:
+      - cover.rollo_gabriel
+      - cover.rollo_alba

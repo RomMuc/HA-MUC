@@ -1,0 +1,10 @@
+#config for tuya doorbell
+
+#battery state scaling
+template:
+  - sensor:
+      - name: "Doorbell battery scaled"
+        device_class: battery
+        unique_id: 4fc39cae-d100-4632-a7e9-be2e3e712fa2
+        unit_of_measurement: "%"
+        state: "{{ (states('sensor.doorbell_black_battery')|float(0) * 10)|int (0)}}"

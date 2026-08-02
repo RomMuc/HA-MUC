@@ -1,0 +1,39 @@
+#lock: #DEPRECATED, using HA Integration
+#  - platform: nuki
+#    host: 192.168.2.108
+#    token: !secret NukiBridgeToken
+    
+#sensor:
+#  - platform: rest
+#    scan_interval: 300 # in seconds
+#    resource: !secret NukiRestURI
+#    name: "NUKI Lockstatus"
+#    value_template: "{{ value_json[0]['lastKnownState']['stateName'] }}"
+#    json_attributes_path: "$[0].lastKnownState"
+#    json_attributes:
+    #  - batteryCritical
+    #  - batteryChargeState
+    #  - timestamp
+    #  - doorsensorStateName
+#  - platform: template
+#    sensors:
+#      nuki_battery_critical:
+#        friendly_name: "Entrée Battery Critical"
+#        value_template: "{{ state_attr('sensor.nuki_Lockstatus', 'batteryCritical') }}"
+#  - platform: template
+#    sensors:
+#      nuki_battery:
+#        friendly_name: "Entrée Battery"
+#        value_template: "{{ state_attr('sensor.nuki_Lockstatus', 'batteryChargeState') }}"
+#        unit_of_measurement: '%'
+#  - platform: template
+#    sensors:
+#      nuki_last_action:
+#        friendly_name: "Entrée Last Action"
+#        value_template: >-
+#          {{ (as_timestamp(states.sensor.nuki_Lockstatus.attributes.timestamp)) | timestamp_custom("%H:%M  %d/%m") }}
+#  - platform: template
+#    sensors:
+#      nuki_status_door:
+#        friendly_name: "Entré Status"
+#        value_template: "{{ state_attr('sensor.nuki_Lockstatus', 'doorsensorStateName') }}"

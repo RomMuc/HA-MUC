@@ -1,0 +1,191 @@
+
+
+#sensor:
+#  - platform: rest
+#    name: QCells Cloud
+#    resource: !secret qcells_cloud_url
+#    method: POST
+#    scan_interval: 420
+#    timeout: 90
+#    # The API returns a 'success' boolean flag in the root JSON block
+#    value_template: >
+#      {% if value_json is defined and 'success' in value_json %}
+#        {{ 'OK' if value_json.success else 'Error' }}
+#      {% else %}
+#        {{ this.state }}
+#      {% endif %}
+#    headers:
+#      Content-Type: application/json
+#      tokenId: !secret qcells_token
+#    payload: !secret qcells_payload_string
+#    json_attributes_path: "$.result"
+#    json_attributes:
+#      - sn
+#      - acpower
+#      - yieldtoday
+#      - yieldtotal
+#      - feedinpower
+#      - feedinenergy
+#      - consumeenergy
+#      - feedinpowerM2
+#      - soc
+#      - peps1
+#      - peps2
+#      - peps3
+#      - inverterType
+#      - inverterStatus
+#      - uploadTime
+#      - batPower
+#      - powerdc1
+#      - powerdc2
+#      - powerdc3
+#      - powerdc4
+#      - batStatus
+
+
+# To be kept in order to show historical data
+template:
+  - sensor:
+      - name: "Inverter AC power total"
+        unique_id: qcells_cloud_acpower
+        state: "{{ state_attr('sensor.qcells_cloud', 'acpower') }}"
+        unit_of_measurement: "W"
+        device_class: power
+#        state_class: measurement
+
+      - name: "Solar energy generated - daily"
+        unique_id: qcells_cloud_yieldtoday
+        state: "{{ state_attr('sensor.qcells_cloud', 'yieldtoday') }}"
+        unit_of_measurement: "kWh"
+        device_class: energy
+#        state_class: total_increasing
+
+      - name: "Solar energy generated - total"
+        unique_id: qcells_cloud_yieldtotal
+        state: "{{ state_attr('sensor.qcells_cloud', 'yieldtotal') }}"
+        unit_of_measurement: "kWh"
+        device_class: energy
+#        state_class: total_increasing
+
+      - name: "Current grid power"
+        unique_id: qcells_cloud_feedinpower
+        state: "{{ state_attr('sensor.qcells_cloud', 'feedinpower') }}"
+        unit_of_measurement: "W"
+        device_class: power
+#        state_class: measurement
+
+      - name: "Solar energy to Grid - total"
+        unique_id: qcells_cloud_feedinenergy
+        state: "{{ state_attr('sensor.qcells_cloud', 'feedinenergy') }}"
+        unit_of_measurement: "kWh"
+        device_class: energy
+#        state_class: total_increasing
+
+      - name: "Energy from Grid - total "
+        unique_id: qcells_cloud_consumerenergy
+        state: "{{ state_attr('sensor.qcells_cloud', 'consumeenergy') }}"
+        unit_of_measurement: "kWh"
+#        device_class: energy
+#        state_class: total_increasing
+
+      - name: "Inverter DC Battery power total"
+        unique_id: qcells_cloud_batpower
+        state: "{{ state_attr('sensor.qcells_cloud', 'batPower') }}"
+        unit_of_measurement: "W"
+        device_class: power
+
+      - name: "Battery Charge"
+        unique_id: qcells_cloud_battery_charge
+        state: >
+          {% if states('sensor.qcells_cloud_batpower') | float(default=0) > 0 %}
+            {{ states('sensor.qcells_cloud_batpower') | float(default=0) }}
+          {% else %}
+            0
+          {% endif %}
+        unit_of_measurement: W
+        device_class: power
+#        state_class: measurement
+
+      - name: "Battery Discharge"
+        unique_id: qcells_cloud_battery_discharge
+        state: >
+          {% if states('sensor.qcells_cloud_batpower') | float(default=0) < 0 %}
+            {{ states('sensor.qcells_cloud_batpower') | float(default=0) | abs }}
+          {% else %}
+            0
+          {% endif %}
+        unit_of_measurement: W
+        device_class: power
+#        state_class: measurement
+
+      - name: "Battery level"
+        unique_id: qcells_cloud_soc
+        device_class: battery
+        state: "{{ state_attr('sensor.qcells_cloud', 'soc') }}"
+        unit_of_measurement: "%"
+
+      - name: "Inverter DC PV power MPPT1"
+        unique_id: qcells_cloud_powerdc1
+        state: "{{ state_attr('sensor.qcells_cloud', 'powerdc1') }}"
+        device_class: power
+#        state_class: measurement
+        unit_of_measurement: "W"
+
+      - name: "Inverter DC PV power MPPT2"
+        unique_id: qcells_cloud_powerdc2
+        state: "{{ state_attr('sensor.qcells_cloud', 'powerdc2') }}"
+        unit_of_measurement: "W"
+#        state_class: measurement
+        device_class: power
+
+      - name: "Inverter DC PV power MPPT3"
+        unique_id: qcells_cloud_powerdc3
+        state: "{{ state_attr('sensor.qcells_cloud', 'powerdc3') }}"
+        unit_of_measurement: "W"
+        device_class: power
+#        state_class: measurement
+
+      - name: "Inverter DC PV power MPPT4"
+        unique_id: qcells_cloud_powerdc4
+        state: "{{ state_attr('sensor.qcells_cloud', 'powerdc4') }}"
+        unit_of_measurement: "W"
+        device_class: power
+#        state_class: measurement
+
+      - name: "Inverter DC PV Power Total"
+        unique_id: qcells_powerdc_sum
+        state: "{{ states('sensor.qcells_cloud_powerdc1') | float(default=0) + states('sensor.qcells_cloud_powerdc2') | float(default=0) + states('sensor.qcells_cloud_powerdc3') | float(default=0) + states('sensor.qcells_cloud_powerdc4') | float(default=0) }}"
+        unit_of_measurement: "W"
+        device_class: power
+#        state_class: measurement
+
+      - name: "House Load"
+        unique_id: qcells_cloud_house_load
+        state: "{{ states('sensor.qcells_cloud_feedinpowerm2') | float(default=0) + states('sensor.qcells_cloud_acpower') | float(default=0) - states('sensor.qcells_cloud_feedinpower') | float(default=0) }}"
+        unit_of_measurement: W
+        device_class: power
+#        state_class: measurement
+
+      - name: "Solar Grid Feed"
+        unique_id: qcells_cloud_grid_feed
+        state: >
+          {% if states('sensor.qcells_cloud_feedinpower') | float(default=0) > 0 %}
+            {{ states('sensor.qcells_cloud_feedinpower') | float(default=0) }}
+          {% else %}
+            0
+          {% endif %}
+        unit_of_measurement: W
+        device_class: power
+#        state_class: measurement
+
+      - name: "SWM Load"
+        unique_id: qcells_cloud_grid_load
+        state: >
+          {% if states('sensor.qcells_cloud_feedinpower') | float(default=0) < 0 %}
+            {{ states('sensor.qcells_cloud_feedinpower') | float(default=0) | abs }}
+          {% else %}
+            0
+          {% endif %}
+        unit_of_measurement: W
+        device_class: power
+#        state_class: measurement

@@ -1,0 +1,63 @@
+# Config for ledvance smart plugs
+
+#mqtt:
+#  sensor:
+#    - name: LQI WZ Standing Light Garten
+#      state_topic: "zigbee2mqtt/0x7cb03eaa0a085420"
+#      availability_topic: "zigbee2mqtt/0x7cb03eaa0a085420/availability"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      icon: "mdi:signal"
+#      value_template: "{{ value_json.linkquality }}"
+#    - name: LQI WZ Small Light Fernseher
+#      state_topic: "zigbee2mqtt/0x7cb03eaa0a085e18"
+#      availability_topic: "zigbee2mqtt/0x7cb03eaa0a085e18/availability"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      icon: "mdi:signal"
+#      value_template: "{{ value_json.linkquality }}"
+#    - name: LQI WZ Standing Light Treppe
+#      state_topic: "zigbee2mqtt/0x7cb03eaa0a084984"
+#      availability_topic: "zigbee2mqtt/0x7cb03eaa0a084984/availability"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      icon: "mdi:signal"
+#      value_template: "{{ value_json.linkquality }}"
+#    - name: LQI Sofa 1
+#      state_topic: "zigbee2mqtt/0x7cb03eaa0a085299"
+#      availability_topic: "zigbee2mqtt/0x7cb03eaa0a085299/availability"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      icon: "mdi:signal"
+#      value_template: "{{ value_json.linkquality }}"
+#  switch:
+#    - name: WZ Standing Light Garten
+#      state_topic: "zigbee2mqtt/0x7cb03eaa0a085420"
+#      availability_topic: "zigbee2mqtt/0x7cb03eaa0a085420/availability"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      payload_off: "OFF"
+#      payload_on: "ON"
+#      value_template: "{{ value_json.state }}"
+#      command_topic: "zigbee2mqtt/0x7cb03eaa0a085420/set"
+#    - name: WZ Small Light Fernseher
+#      state_topic: "zigbee2mqtt/0x7cb03eaa0a085e18"
+#      availability_topic: "zigbee2mqtt/0x7cb03eaa0a085e18/availability"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      payload_off: "OFF"
+#      payload_on: "ON"
+#      value_template: "{{ value_json.state }}"
+#      command_topic: "zigbee2mqtt/0x7cb03eaa0a085e18/set"
+#    - name: WZ Standing Light Treppe
+#      state_topic: "zigbee2mqtt/0x7cb03eaa0a084984"
+#      availability_topic: "zigbee2mqtt/0x7cb03eaa0a084984/availability"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      payload_off: "OFF"
+#      payload_on: "ON"
+#      value_template: "{{ value_json.state }}"
+#      command_topic: "zigbee2mqtt/0x7cb03eaa0a084984/set"
+#    - name: Sofa 1
+#      state_topic: "zigbee2mqtt/0x7cb03eaa0a085299"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      availability_topic: "zigbee2mqtt/0x7cb03eaa0a085299/availability"
+#      payload_off: "OFF"
+#      payload_on: "ON"
+#      value_template: "{{ value_json.state }}"
+#      command_topic: "zigbee2mqtt/0x7cb03eaa0a085299/set"
+  
+

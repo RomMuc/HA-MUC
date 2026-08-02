@@ -1,0 +1,55 @@
+Wohnzimmer_Decke:
+  name: Light Wohnzimmer Decke
+  icon: mdi:ceiling-light-multiple
+  entities:
+    - switch.wohnzimmer_decke_switch_0
+    - switch.wohnzimmer_decke_switch_1
+
+Sofa_Lights:
+  name: Lights Sofa
+  icon: mdi:lamps
+  entities:
+    - switch.sofa_right
+    - light.sofa_left
+
+Ambiance_Lights_Wohnzimmer:
+  name: Lights Ambiance Wohnzimmer
+  icon: mdi:lamps-outline
+  entities:
+    - switch.switch_wz_fernseher
+    - switch.switch_wz_treppe
+    - switch.switch_wz_garden
+
+Lights_Wohnzimmer:
+  name: Lights Wohnzimmer
+  icon: mdi:lightbulb-group-outline
+  entities:
+    - switch.switch_wz_fernseher
+    - switch.switch_wz_treppe
+    - switch.switch_wz_garden
+    - group.wohnzimmer_decke
+    - group.sofa_lights
+    - switch.light_esstisch
+
+LED_Kueche_Lights:
+  name: LED Küche
+  icon: mdi:led-strip-variant
+  entities:
+    - switch.led_kuche_bar_rechts
+    - light.led_kuche_links
+
+Kueche_Lights:
+  name: Lights Küche
+  icon: mdi:lightbulb-group-outline
+  entities:
+    - group.LED_Kueche_Lights
+    - light.kueche_decke
+
+Alba_lights:
+  name: Lights Alba
+  icon: mdi:lightbulb-group-outline
+  entities:
+    - light.alba_decke_1
+    - light.alba_decke_2
+
+

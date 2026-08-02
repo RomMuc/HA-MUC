@@ -1,0 +1,8 @@
+# Example configuration.yaml entry
+extra_module_url:
+  - /hacsfiles/lovelace-card-mod/card-mod.js
+themes:
+  my-theme:
+    modes:
+      dark:
+        accent-color: Green

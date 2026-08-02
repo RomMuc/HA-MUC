@@ -1,0 +1,47 @@
+# Config for light Innr
+#Innr_lights: !include innr_lights.yaml
+#All config for Innr lights with Zigbee2mqtt interface
+
+#mqtt:
+#  light:
+#    - name: "Licht Flur 1.OG"
+#      state_topic: "zigbee2mqtt/0x00158d0004737134"
+#      availability_topic: "zigbee2mqtt/0x00158d0004737134/availability"
+#      payload_available: "online"
+#      payload_not_available: "offline"
+#      brightness: true
+#      schema: json
+#      command_topic: "zigbee2mqtt/0x00158d0004737134/set"
+#      brightness_scale: 255
+#    - name: "Sofa 2"
+#      state_topic: "zigbee2mqtt/0x00158d0004725640"
+#      availability_topic: "zigbee2mqtt/0x00158d0004725640/availability"
+#      brightness: true
+#      schema: "json"
+#      command_topic: "zigbee2mqtt/0x00158d0004725640/set"
+#      brightness_scale: 255
+#    - name: "Küche Decke"
+#      unique_id: b48953a9-3a0f-40d8-9fa4-cbe7453c771e
+#      state_topic: "zigbee2mqtt/0x00158d000470940f"
+#      availability_topic: "zigbee2mqtt/0x00158d000470940f/availability"
+#      brightness: true
+#      schema: "json"
+#      command_topic: "zigbee2mqtt/0x00158d000470940f/set"
+#      brightness_scale: 255
+#  sensor:
+#    - name: "LQI Licht Flur 1.OG"
+#      state_topic: "zigbee2mqtt/0x00158d0004737134"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      icon: "mdi:signal"
+#      value_template: "{{ value_json.linkquality }}"
+#    - name: LQI Sofa 2
+#      state_topic: "zigbee2mqtt/0x00158d0004725640"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      icon: "mdi:signal"
+#      value_template: "{{ value_json.linkquality }}"
+#    - name: LQI Küche Decke
+#      state_topic: "zigbee2mqtt/0x00158d000470940f"
+#      icon: "mdi:signal"
+#      availability_topic: "zigbee2mqtt/bridge/state"
+#      value_template: "{{ value_json.linkquality }}"
+      

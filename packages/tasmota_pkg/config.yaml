@@ -1,0 +1,16 @@
+#Config for tasmota switches
+
+#mqtt:
+#  switch:
+#    - unique_id: switch_led_kueche_recht
+#      name: "Switch LED Kueche Recht"
+#      state_topic: "Switch/Kueche_LED_Recht/STATE"
+#      availability_topic: "Switch/Kueche_LED_Recht/LWT"
+#      command_topic: "Switch/Kueche_LED_Recht/cmnd/POWER"
+#      payload_available: "Online"
+#      payload_not_available: "Offline"
+#      payload_on: "ON"
+#      payload_off: "OFF"
+#      optimistic: true
+#      qos: 1
+#      retain: true

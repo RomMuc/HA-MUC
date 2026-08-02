@@ -1,0 +1,1065 @@
+- id: '1595147332492'
+  alias: Notify Nuki Unavailable
+  description: ''
+  triggers:
+  - entity_id:
+    - lock.nuki_entree_lock
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+    trigger: state
+  conditions: []
+  actions:
+  - data:
+      message: Nuki unavailable
+    action: notify.mobile_app_romains_ipad_pro
+  - action: notify.mobile_app_s25_rom
+    data:
+      title: Nuki unavailable
+  mode: single
+- id: '1595148122488'
+  alias: Shellies Unavailable
+  description: Increments a counter when a shelly device disconnects
+  triggers:
+  - entity_id:
+    - cover.rollo_wz1
+    - cover.rollo_wz2
+    - cover.rollo_wz3
+    - cover.rollo_wz4
+    - cover.rollo_bad_eg
+    - cover.rollo_kueche
+    - cover.rollo_alba_1
+    - cover.rollo_alba_2
+    - cover.rollo_gabriel_1
+    - cover.rollo_gabriel_2
+    - cover.rollo_bad_1og
+    - switch.light_esstisch
+    - sensor.wohnzimmer_decke_rssi
+    - switch.light_bad_1og_washbecken
+    - switch.light_decke_bad_1og
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+    trigger: state
+  conditions: []
+  actions:
+  - action: counter.increment
+    metadata: {}
+    data: {}
+    target:
+      entity_id: counter.counter_unavailable_shellies
+  mode: single
+- id: '1599058748408'
+  alias: Link LED left-right Küche ON
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - light.led_kuche_links
+    to: 'on'
+  conditions: []
+  actions:
+  - data: {}
+    action: switch.turn_on
+    target:
+      device_id: 5114788e65686702df46ce803bde040f
+      entity_id: switch.led_kuche_bar_rechts
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id: 3cfcf4e5e3e0f174cc5d97e5b8eedbc2
+  max_exceeded: silent
+  mode: single
+- id: '1600012179965'
+  alias: Link LED left-right Küche OFF
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - light.led_kuche_links
+    to: 'off'
+  conditions: []
+  actions:
+  - data: {}
+    action: switch.turn_off
+    target:
+      device_id: 5114788e65686702df46ce803bde040f
+      entity_id: switch.led_kuche_bar_rechts
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.kueche_decke
+        state: 'on'
+      sequence:
+      - target:
+          entity_id: light.kueche_decke
+        data: {}
+        action: light.turn_off
+    enabled: true
+  max_exceeded: silent
+  mode: single
+- id: '1603554442575'
+  alias: Connect lights Bad 1OG ON
+  description: ''
+  trigger:
+  - entity_id:
+    - switch.light_decke_bad_1og
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data: {}
+    service: switch.turn_on
+    target:
+      device_id: e6df4f30ab45ec8c30b7a6b7b5a78a53
+  mode: single
+- id: '1632053150510'
+  alias: 'Battery Level Entrée Critical '
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.nuki_battery_critical
+    from: 'false'
+    to: 'true'
+  - platform: state
+    entity_id:
+    - sensor.nuki_battery
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.nuki_battery
+    below: '15'
+  action:
+  - service: notify.mobile_app_s21_rom
+    data:
+      title: Battery door lock (Nuki) critical
+      message: Battery level is {{ states("sensor.nuki_battery") }}%
+  - service: notify.persistent_notification
+    data:
+      title: Battery door lock (Nuki) critical
+      message: Battery level is {{ states("sensor.nuki_battery") }}%
+  mode: single
+- id: '1653844060929'
+  alias: Battery Doorbell Critical
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.doorbell_battery
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.doorbell_battery
+    below: '15'
+  - condition: numeric_state
+    entity_id: sensor.doorbell_battery
+    above: '0'
+  action:
+  - service: notify.persistent_notification
+    data:
+      title: Battery doorbell critical
+      message: Battery level is {{states("sensor.doorbell_battery") }}%
+  - service: notify.mobile_app_s21_rom
+    data:
+      title: Battery doorbell critical
+      message: Battery level is {{states("sensor.doorbell_battery") }}%
+  mode: single
+- id: '1664119967537'
+  alias: Timer serviette Bad OG
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.sonoff_10014dcff8
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 30
+      seconds: 0
+      milliseconds: 0
+  - service: switch.turn_off
+    data: {}
+    target:
+      device_id: a87f91cfbb9052781ad98d5ed614ff73
+  mode: single
+- id: '1676272761037'
+  alias: Küche Light ON if movement
+  description: ''
+  triggers:
+  - entity_id:
+    - binary_sensor.motion_kuche_door_occupancy
+    - binary_sensor.motion_kueche_window_occupancy
+    from: 'off'
+    to: 'on'
+    trigger: state
+  conditions: []
+  actions:
+  - data: {}
+    target:
+      device_id:
+      - 5114788e65686702df46ce803bde040f
+    action: switch.turn_on
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.led_kuche_links
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.kueche_decke
+        state: 'off'
+      sequence:
+      - type: turn_on
+        device_id: 3cfcf4e5e3e0f174cc5d97e5b8eedbc2
+        entity_id: cd26afb73e948b8d1ece3872f2a4e490
+        domain: light
+  mode: single
+- id: '1676280358680'
+  alias: Küche light OFF after inactivity
+  description: ''
+  triggers:
+  - entity_id:
+    - binary_sensor.motion_kuche_door_occupancy
+    from: 'on'
+    to: 'off'
+    trigger: state
+  - entity_id:
+    - switch.led_kuche_bar_rechts
+    from: 'off'
+    to: 'on'
+    trigger: state
+  - entity_id:
+    - light.kueche_decke
+    from: 'off'
+    to: 'on'
+    trigger: state
+  conditions: []
+  actions:
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - condition: state
+    entity_id: binary_sensor.motion_kuche_door_occupancy
+    state: 'off'
+    for:
+      hours: 0
+      minutes: 8
+      seconds: 0
+  - data: {}
+    target:
+      device_id:
+      - 5114788e65686702df46ce803bde040f
+    action: switch.turn_off
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.kueche_decke
+        state: 'on'
+      sequence:
+      - target:
+          entity_id: light.kueche_decke
+        data: {}
+        action: light.turn_off
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.led_kuche_links
+  mode: restart
+- id: '1678050314905'
+  alias: Küche lights ON if door opens
+  description: ''
+  triggers:
+  - entity_id:
+    - binary_sensor.kuche_door_contact
+    from: 'off'
+    to: 'on'
+    trigger: state
+  conditions: []
+  actions:
+  - action: light.turn_on
+    target:
+      entity_id: light.led_kuche_links
+    data: {}
+  - data: {}
+    action: switch.turn_on
+    target:
+      device_id: 5114788e65686702df46ce803bde040f
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.kueche_decke
+        state: 'off'
+      sequence:
+      - target:
+          entity_id: light.kueche_decke
+        data: {}
+        action: light.turn_on
+  - data:
+      skip_condition: true
+    target:
+      entity_id: automation.switch_kuche_light_off_after_inactivity
+    action: automation.trigger
+  mode: restart
+- id: '1678135834131'
+  alias: Küche Switch lights off if door closes and no motion
+  description: ''
+  triggers:
+  - entity_id:
+    - binary_sensor.kuche_door_contact
+    from: 'on'
+    to: 'off'
+    trigger: state
+  conditions:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.motion_kuche_door_occupancy
+      state: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+  actions:
+  - data: {}
+    action: switch.turn_off
+    target:
+      device_id: 5114788e65686702df46ce803bde040f
+  - data: {}
+    action: switch.turn_off
+    target:
+      entity_id:
+      - switch.sonoff_led_kueche_links
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.kueche_decke
+        state: 'on'
+      sequence:
+      - target:
+          entity_id: light.kueche_decke
+        data: {}
+        action: light.turn_off
+  mode: single
+- id: '1689484727323'
+  alias: Activate debug level for 10 min
+  description: define starting time
+  trigger:
+  - platform: time
+    at: 05:30:00
+  condition: []
+  action:
+  - service: logger.set_default_level
+    data:
+      level: debug
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - service: logger.set_default_level
+    data:
+      level: info
+  mode: single
+- id: '1693679640558'
+  alias: Tag Unlock door is scanned
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: 2ea320d3-7243-47ea-9c6a-7629a1a162f0
+  conditions: []
+  actions:
+  - action: lock.open
+    target:
+      entity_id: lock.nuki_entree_lock
+    data: {}
+  mode: single
+- id: '1700317445150'
+  alias: Water detection basement
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: 6670495f7783258a08884acafb209d9e
+    entity_id: 2a39918fae765e4a9c081079b66ebc43
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.persistent_notification
+    data:
+      title: ALARM WATER LEAK
+      message: Water in basement
+  - service: notify.mobile_app_s21_rom
+    data:
+      title: ALARM WATER LEAK
+      message: Water in basement
+  - service: notify.mobile_app_galaxy_watch5_pro_tcdz
+    data:
+      message: Water in basement
+      title: ALARM WATER LEAK
+  - service: notify.mobile_app_romains_ipad_pro
+    data:
+      message: Water in basement
+      title: ALARM WATER LEAK
+  mode: single
+- id: '1700333826806'
+  alias: Connect Bad 1OG lights OFF
+  description: ''
+  trigger:
+  - entity_id:
+    - switch.light_decke_bad_1og
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      device_id: e6df4f30ab45ec8c30b7a6b7b5a78a53
+  mode: single
+- id: '1701018400240'
+  alias: 'Check Internet after low rate identified '
+  description: ''
+  triggers:
+  - entity_id:
+    - sensor.speedtest_download
+    below: 20
+    trigger: numeric_state
+  - entity_id:
+    - sensor.speedtest_upload
+    below: 5
+    trigger: numeric_state
+  conditions: []
+  actions:
+  - delay:
+      hours: 0
+      minutes: 14
+      seconds: 0
+      milliseconds: 0
+  - data: {}
+    target:
+      entity_id:
+      - sensor.speedtest_upload
+      - sensor.speedtest_download
+    action: homeassistant.update_entity
+  mode: restart
+- id: '1703580033669'
+  alias: BWT Warning state
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.bwt_state
+    to: Warning
+    from: OK
+  condition: []
+  action:
+  - service: persistent_notification.create
+    data:
+      title: BWT Status
+      message: Warning state
+  mode: single
+- id: '1703580075868'
+  alias: BWT Error
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.bwt_state
+    to: Error
+  condition: []
+  action:
+  - service: persistent_notification.create
+    data:
+      title: BWT Status
+      message: Error state
+  mode: single
+- id: '1705044577347'
+  alias: Light on if before sunrise
+  description: ''
+  triggers:
+  - entity_id:
+    - scene.open_rollos_eg
+    trigger: state
+  conditions:
+  - condition: sun
+    before: sunrise
+    after: sunset
+    before_offset: 02:00:00
+    after_offset: -02:00:00
+  actions:
+  - type: turn_on
+    device_id: 4cb9570d4280759a66a0e03131d190d0
+    entity_id: 6fa9f065d205faae8e08cdfe03d50864
+    domain: switch
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - choose:
+    - conditions:
+      - condition: time
+        weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+      sequence:
+      - type: turn_on
+        device_id: 78e98b9090628619ad0106576cc6a0b4
+        entity_id: 8b23d5fd759e4bf44d499d244c89d5e4
+        domain: switch
+  - action: automation.turn_off
+    target:
+      entity_id: automation.switch_on_light_stairs_at_night
+    data:
+      stop_actions: true
+  - action: automation.turn_on
+    target:
+      entity_id:
+      - automation.switch_on_light_stairs_at_night
+    data: {}
+  mode: single
+- id: '1705443891535'
+  alias: Smoke detector battery notif
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.shellysmokekeller_battery
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.shellysmokekeller_battery
+    below: '15'
+  - condition: numeric_state
+    entity_id: sensor.shellysmokekeller_battery
+    above: '0'
+  action:
+  - service: notify.persistent_notification
+    data:
+      title: Battery smoke detector critical
+      message: Battery level is {{states("sensor.shellysmokekeller_battery") }} %
+  - service: notify.mobile_app_s21_rom
+    data:
+      title: Battery smoke detector critical
+      message: Battery level is {{states("sensor.shellysmokekeller_battery") }} %
+  - service: notify.notify
+    data:
+      message: Battery level critical
+      title: Smoke detector battery
+  mode: single
+- id: '1705473553495'
+  alias: 'Smoke detected '
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.shellysmokekeller_smoke
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.persistent_notification
+    data:
+      title: 'SMOKE IN BASEMENT '
+      message: 'Smoke in basements '
+  - service: notify.mobile_app_s21_rom
+    data:
+      message: Smoke in basement
+      title: 'SMOKE IN BASEMENT '
+  - service: notify.mobile_app_galaxy_watch5_pro_tcdz
+    data:
+      title: 'SMOKE IN BASEMENT '
+      message: Smoke in basement
+  - service: notify.mobile_app_romains_ipad_pro
+    data:
+      title: 'SMOKE IN BASEMENT '
+      message: 'Smoke in basement '
+  mode: single
+- id: '1711563431876'
+  alias: Keypad battery low
+  description: Do not edit in UI which does not allow to use « low » as trigger (selecting
+    Low will translate to « on » and not trigger the automation). Use « low » as trigger
+    state in automation.yaml
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.nuki_entree_keypad_battery_critical
+    to: low
+  condition: []
+  action:
+  - data:
+      title: Battery door lock keypad (Nuki) low
+      message: Battery door lock keypad (Nuki) low
+    action: notify.mobile_app_s21_rom
+  - data:
+      title: Battery door lock keypad (Nuki) low
+      message: Battery door lock keypad (Nuki) low
+    action: notify.persistent_notification
+  mode: single
+- id: '1714313891067'
+  alias: Monitor doorbell
+  description: Send persistent notification when doorbell becomes unavailable
+  trigger:
+  - platform: state
+    entity_id:
+    - camera.muc_doorbell
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.persistent_notification
+    metadata: {}
+    data:
+      message: Doorbell unavailable :-(
+      title: Doorbell connection lost
+  - service: notify.mobile_app_s21_rom
+    metadata: {}
+    data:
+      message: Doorbell connection lost
+  mode: single
+- id: '1719648608697'
+  alias: Coucou Romain
+  description: ''
+  triggers:
+  - entity_id: device_tracker.s25
+    zone: zone.home
+    event: enter
+    trigger: zone
+  - trigger: state
+    entity_id:
+    - sensor.sm_g991b_wifi_connection
+    enabled: false
+  conditions:
+  - condition: time
+    after: '10:00:00'
+    before: '21:00:00'
+  actions:
+  - target:
+      device_id: 5032785cfb89488e2063c35ed2b3070b
+    data:
+      volume_level: 0.5
+    action: media_player.volume_set
+  - data:
+      message: Romain kommt heim
+      data:
+        type: tts
+    action: notify.alexa_media_romain_s_echo_dot
+  mode: single
+- id: '1725104516163'
+  alias: React to switch ON Küche Decke
+  description: ''
+  triggers:
+  - entity_id:
+    - light.kueche_decke
+    to: 'on'
+    trigger: state
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.led_kuche_links
+        state: 'off'
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.led_kuche_links
+  - type: turn_on
+    device_id: 5114788e65686702df46ce803bde040f
+    entity_id: 04cfc55979ab12bf7a420c1b4c056ff7
+    domain: switch
+  - data:
+      skip_condition: true
+    target:
+      entity_id: automation.switch_kuche_light_off_after_inactivity
+    action: automation.trigger
+  mode: restart
+- id: '1725185286203'
+  alias: Switch ON 1. OG if movement
+  description: From dusk - 2h till dawn + 2h, cloudy weather
+  triggers:
+  - entity_id:
+    - binary_sensor.motion_detector_1_og
+    to: 'on'
+    trigger: state
+  - trigger: state
+    entity_id:
+    - binary_sensor.motion_treppe_occupancy
+    to: 'on'
+  conditions:
+  - condition: or
+    conditions:
+    - condition: sun
+      before: sunrise
+      after: sunset
+      before_offset: 02:00:00
+      after_offset: -02:00:00
+    - condition: state
+      entity_id: weather.forecast_home
+      state: cloudy
+    - condition: state
+      entity_id: weather.forecast_home
+      state: fog
+    - condition: state
+      entity_id: weather.forecast_home
+      state: lightning-rainy
+    - condition: state
+      entity_id: weather.forecast_home
+      state: partlycloudy
+      enabled: false
+    - condition: state
+      entity_id: weather.forecast_home
+      state: pouring
+    - condition: state
+      entity_id: weather.forecast_home
+      state: rainy
+    - condition: state
+      entity_id: weather.forecast_home
+      state: snowy-rainy
+    - condition: state
+      entity_id: weather.forecast_home
+      state: snowy
+    - condition: state
+      entity_id: weather.forecast_home
+      state: windy-variant
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      transition: 1
+    target:
+      entity_id: light.0x001788010f34ca39
+  mode: restart
+- id: '1725480972724'
+  alias: React to switch ON Flur 1. OG
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - light.0x001788010f34ca39
+    to:
+    - 'on'
+  actions:
+  - action: timer.start
+    metadata: {}
+    target:
+      entity_id: timer.flur_1og_light
+    data: {}
+  - wait_for_trigger:
+    - trigger: state
+      entity_id:
+      - timer.flur_1og_light
+      to:
+      - idle
+      from:
+      - active
+  - condition: state
+    entity_id: binary_sensor.motion_1_og_occupancy
+    state: 'off'
+  - action: light.turn_off
+    metadata: {}
+    data:
+      transition: 2
+    target:
+      entity_id: light.0x001788010f34ca39
+  mode: restart
+- id: '1725747269338'
+  alias: React Küche Decke Switched off
+  description: Powered off via the switch
+  triggers:
+  - entity_id:
+    - light.kueche_decke
+    to: unavailable
+    trigger: state
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.led_kuche_links
+        state: 'on'
+      sequence:
+      - type: turn_off
+        device_id: 5114788e65686702df46ce803bde040f
+        entity_id: 04cfc55979ab12bf7a420c1b4c056ff7
+        domain: switch
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.led_kuche_links
+  mode: restart
+- id: '1728813266712'
+  alias: Switch on light EG at night if movement
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: cdcaae63cd82e5796bef45a62481268f
+    entity_id: 2933062f88f7ec962d71a4ca95778dff
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: state
+    entity_id: cover.rollo_eg
+    state: closed
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+    enabled: true
+  - condition: device
+    type: is_off
+    device_id: 4cb9570d4280759a66a0e03131d190d0
+    entity_id: 6fa9f065d205faae8e08cdfe03d50864
+    domain: switch
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      device_id: 8a532b16de2a16bf4076d1717978de37
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      device_id: 8a532b16de2a16bf4076d1717978de37
+    enabled: false
+  - alias: switch off if other ambiance also off
+    choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: 59cb79e7da0f874c3a7f42144757f89f
+        entity_id: 1176c516ab9e73a25ebd01be9fb5c4f3
+        domain: switch
+      sequence:
+      - type: turn_off
+        device_id: 8a532b16de2a16bf4076d1717978de37
+        entity_id: 2ae4546462eb6ec0efbebc99df58d0d3
+        domain: switch
+  mode: single
+  trace:
+    stored_traces: 20
+- id: '1736071071998'
+  alias: Reload SpeedTest if unavailable
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.speedtest_download
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  conditions: []
+  actions:
+  - action: homeassistant.reload_config_entry
+    target:
+      device_id: bc784e80ad1d8c05f7a84fda623114f6
+    data: {}
+  mode: single
+- id: '1736640119299'
+  alias: Switch off 1 OG after inactivity
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.motion_1_og_occupancy
+    to:
+    - 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  conditions: []
+  actions:
+  - action: timer.start
+    metadata: {}
+    target:
+      entity_id: timer.flur_1og_light
+    data: {}
+  - wait_for_trigger:
+    - trigger: state
+      entity_id:
+      - timer.flur_1og_light
+      to:
+      - idle
+      from:
+      - active
+  - delay:
+      hours: 0
+      minutes: 3
+      seconds: 0
+      milliseconds: 0
+    enabled: false
+  - condition: state
+    entity_id: light.0x001788010f34ca39
+    state:
+    - 'on'
+  - action: light.turn_off
+    metadata: {}
+    data:
+      transition: 2
+    target:
+      entity_id: light.0x001788010f34ca39
+  mode: restart
+- id: '1738507489545'
+  alias: 'Reload Vicare if unavailable '
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.vicare_boiler_temperature
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  conditions: []
+  actions:
+  - action: homeassistant.reload_config_entry
+    data: {}
+    target:
+      entity_id: sensor.vicare_boiler_temperature
+  mode: single
+- id: '1760681829276'
+  alias: Kühlschrank door open
+  description: ''
+  triggers:
+  - type: opened
+    device_id: 794f1ac3189c2bce01c5c2d4a71025de
+    entity_id: b78f8fc4a34d4297dcb459315d210e28
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  conditions: []
+  actions:
+  - target:
+      device_id: 5032785cfb89488e2063c35ed2b3070b
+    data:
+      volume_level: 0.5
+    action: media_player.volume_set
+  - data:
+      data:
+        type: tts
+      message: Kühlschrank offen
+    action: notify.alexa_media_romain_s_echo_dot
+  - repeat:
+      while:
+      - type: is_open
+        condition: device
+        device_id: 794f1ac3189c2bce01c5c2d4a71025de
+        entity_id: b78f8fc4a34d4297dcb459315d210e28
+        domain: binary_sensor
+        for:
+          hours: 0
+          minutes: 0
+          seconds: 5
+      sequence:
+      - target:
+          device_id: 5032785cfb89488e2063c35ed2b3070b
+        data:
+          volume_level: 0.5
+        action: media_player.volume_set
+      - data:
+          data:
+            type: tts
+          message: Kühlschrank offen
+        action: notify.alexa_media_romain_s_echo_dot
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
+  mode: single
+- id: '1766212355491'
+  alias: Deactivate Bathroom heater
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.bwt_holiday_mode
+    to:
+    - '1'
+    from:
+    - '0'
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.schedule_79940b
+    data: {}
+  mode: single
+- id: '1777822655525'
+  alias: ' QCells Manual Polling Trick'
+  description: ''
+  triggers:
+  - minutes: /7
+    trigger: time_pattern
+  conditions:
+  - condition: state
+    entity_id: input_boolean.qcells_pause
+    state: 'off'
+  - condition: template
+    value_template: '{% set uptime = states(''sensor.uptime'') | as_datetime %} {{
+      now() > uptime + timedelta(minutes=5) }}
+
+      '
+  actions:
+  - action: homeassistant.update_entity
+    target:
+      entity_id: sensor.qcells_cloud
+- id: '1781128896093'
+  alias: Switch electricity tariffs
+  description: ''
+  triggers:
+  - at: 06:00:00
+    variables:
+      tariff: Standard
+    trigger: time
+  - at: '21:00:00'
+    variables:
+      tariff: Standard
+    trigger: time
+  conditions: []
+  actions:
+  - action: select.select_option
+    target:
+      entity_id: select.solax_electricity_daily_energy
+    data:
+      option: '{{ tariff }}'
+  mode: single

@@ -1,0 +1,42 @@
+
+- cal_id: family01563970047217259495@group.calendar.google.com
+  entities:
+  - device_id: family
+    ignore_availability: true
+    name: Family
+    track: true
+
+- cal_id: rom.richard@gmail.com
+  entities:
+  - device_id: romain
+    ignore_availability: true
+    name: Romain
+    track: true
+
+- cal_id: addressbook#contacts@group.v.calendar.google.com
+  entities:
+  - device_id: contacts
+    ignore_availability: true
+    name: Contacts
+    track: true
+
+- cal_id: en.german#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_germany
+    ignore_availability: true
+    name: Holidays in Germany
+    track: true
+
+- cal_id: 8d60o23cif880ntpi827roaee8@group.calendar.google.com
+  entities:
+  - device_id: mullabfuhr
+    ignore_availability: true
+    name: "M\xFCllabfuhr"
+    track: true
+
+- cal_id: en.german.official#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_germany
+    ignore_availability: true
+    name: Holidays in Germany
+    track: true

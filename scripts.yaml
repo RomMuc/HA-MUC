@@ -1,0 +1,36 @@
+'1591897697977':
+  alias: Script Close Rollo Bad 1OG
+  sequence:
+  - data: {}
+    entity_id: cover.rollo_bad_1og
+    service: cover.close_cover
+'1592145304566':
+  alias: Script Close Rollos WZ
+  sequence:
+  - data: {}
+    entity_id: cover.rollo_wohnzimmer_1
+    service: cover.close_cover
+  - data: {}
+    entity_id: cover.rollo_wohnzimmer_2
+    service: cover.close_cover
+  - data: {}
+    entity_id: cover.rollo_wohnzimmer_3
+    service: cover.close_cover
+  - data: {}
+    entity_id: cover.rollo_wohnzimmer_4
+    service: cover.close_cover
+'1592152978199':
+  alias: Script Open Rollos WZ
+  sequence:
+  - data: {}
+    entity_id: cover.rollo_wohnzimmer_1
+    service: cover.open_cover
+  - data: {}
+    entity_id: cover.rollo_wohnzimmer_2
+    service: cover.open_cover
+  - data: {}
+    entity_id: cover.rollo_wohnzimmer_3
+    service: cover.open_cover
+  - data: {}
+    entity_id: cover.rollo_wohnzimmer_4
+    service: cover.open_cover

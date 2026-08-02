@@ -1,0 +1,9 @@
+- sensor:
+    name: "CPU Temp Rpi"
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "°C"
+    value_template: "{{ value | multiply(0.001) | round(1) }}"
+#- sensor:
+#    name: "Throttle Pi"
+#    command: "cat /sys/devices/platform/soc/soc:firmware/get_throttled"
+#    unit_of_measurement: "State"

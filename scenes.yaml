@@ -1,0 +1,208 @@
+- id: '1593244201219'
+  name: Close Rollo EG
+  entities:
+    cover.rollo_eg:
+      entity_id:
+      - cover.rollo_bad_eg
+      - cover.rollo_kueche
+      - cover.rollo_wohnzimmer
+      friendly_name: Rollo EG
+      supported_features: 15
+      state: closed
+  icon: mdi:blinds
+- id: '1593247040575'
+  name: Open Rollos EG
+  entities:
+    cover.rollo_eg:
+      entity_id:
+      - cover.rollo_bad_eg
+      - cover.rollo_kueche
+      - cover.rollo_wohnzimmer
+      friendly_name: Rollo EG
+      supported_features: 15
+      state: open
+  icon: mdi:blinds-open
+- id: '1593860178891'
+  name: Rollo Alba auf
+  entities:
+    cover.rollo_alba:
+      state: open
+- id: '1593860205578'
+  name: Rollo Alba zu
+  entities:
+    cover.rollo_alba:
+      state: closed
+- id: '1593943567158'
+  name: Rollo Gabriel auf
+  entities:
+    cover.rollo_gabriel:
+      state: open
+- id: '1595681257846'
+  name: Kino Stimmung
+  entities:
+    group.sofa_lights:
+      entity_id:
+      - switch.sofa_right
+      - light.sofa_left
+      order: 1
+      friendly_name: Sofa Lights
+      state: 'off'
+    group.ambiance_lights_wohnzimmer:
+      entity_id:
+      - switch.switch_wz_fernseher
+      - switch.switch_wz_treppe
+      - switch.switch_wz_garden
+      order: 2
+      friendly_name: Ambiance Lights Wohnzimmer
+      icon: hass:lightbulb
+      state: 'on'
+    group.wohnzimmer_decke:
+      entity_id:
+      - switch.wohnzimmer_decke_switch_0
+      - switch.wohnzimmer_decke_switch_1
+      order: 0
+      friendly_name: Wohnzimmer Decke
+      icon: hass:lightbulb
+      state: 'off'
+    switch.light_esstisch:
+      friendly_name: Light Esstisch
+      state: 'off'
+  metadata:
+    switch.light_esstisch:
+      entity_only: true
+- id: '1595681288140'
+  name: Switch off all lights EG
+  entities:
+    group.lights_wohnzimmer:
+      entity_id:
+      - switch.switch_wz_fernseher
+      - switch.switch_wz_treppe
+      - switch.switch_wz_garden
+      - group.wohnzimmer_decke
+      - group.sofa_lights
+      - switch.light_esstisch
+      order: 7
+      friendly_name: Lights Wohnzimmer
+      icon: hass:lightbulb
+      state: 'off'
+    group.kueche_lights:
+      entity_id:
+      - switch.switch_led_kueche_recht
+      - switch.led_kueche_links
+      - light.kueche_decke
+      order: 8
+      friendly_name: Küche Lights
+      icon: hass:lightbulb
+      state: 'off'
+  icon: mdi:lightbulb-group-off
+  metadata:
+    group.kueche_lights:
+      entity_only: true
+- id: '1595681403109'
+  name: Ambiance Light WZ ON
+  entities:
+    group.ambiance_lights_wohnzimmer:
+      state: 'on'
+- id: '1596364641884'
+  name: Sofa lights ON
+  entities:
+    group.sofa_lights:
+      state: 'on'
+  icon: hass:lightbulb
+- id: '1596364682518'
+  name: Sofa light OFF
+  entities:
+    group.sofa_lights:
+      state: 'off'
+  icon: hass:lightbulb
+- id: '1598801811087'
+  name: Switch ON All Lights EG
+  entities:
+    group.lights_wohnzimmer:
+      entity_id:
+      - switch.switch_wz_fernseher
+      - switch.switch_wz_treppe
+      - switch.switch_wz_garden
+      - group.wohnzimmer_decke
+      - group.sofa_lights
+      - switch.light_esstisch
+      order: 8
+      friendly_name: Lights Wohnzimmer
+      icon: hass:lightbulb
+      state: 'on'
+  metadata:
+    group.lights_wohnzimmer:
+      entity_only: true
+- id: '1677434858474'
+  name: Lesestimmung
+  entities:
+    group.ambiance_lights_wohnzimmer:
+      state: 'on'
+    group.sofa_lights:
+      state: 'on'
+    group.wohnzimmer_decke:
+      state: 'off'
+    switch.light_esstisch:
+      state: 'off'
+  icon: mdi:book-account
+  metadata:
+    group.ambiance_lights_wohnzimmer:
+      entity_only: true
+    group.sofa_lights:
+      entity_only: true
+    group.wohnzimmer_decke:
+      entity_only: true
+    switch.light_esstisch:
+      entity_only: true
+- id: '1728068132892'
+  name: Esstisch an
+  entities:
+    switch.light_esstisch:
+      friendly_name: Light Esstisch
+      state: 'on'
+  metadata: {}
+- id: '1736077482386'
+  name: Alba Licht aus
+  entities:
+    group.alba_lights:
+      effect_list:
+      - blink
+      - breathe
+      - channel_change
+      - finish_effect
+      - okay
+      - stop_effect
+      supported_color_modes:
+      - brightness
+      icon: mdi:lightbulb-group
+      friendly_name: Alba Decke
+      supported_features: 44
+      effect:
+      color_mode: brightness
+      brightness: 255
+      state: 'off'
+  icon: mdi:lightbulb-group-off
+  metadata: {}
+- id: '1736077587725'
+  name: Alba Licht an
+  entities:
+    group.alba_lights:
+      effect_list:
+      - blink
+      - breathe
+      - channel_change
+      - finish_effect
+      - okay
+      - stop_effect
+      supported_color_modes:
+      - brightness
+      icon: mdi:lightbulb-group
+      friendly_name: Alba Decke
+      supported_features: 44
+      effect:
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+  icon: mdi:ceiling-light-multiple
+  metadata: {}
+  

@@ -12,7 +12,6 @@ custom_components/
 .ha_run.lock
 promtail/
 deps/
-image/
 tmp/
 tts/
 www/

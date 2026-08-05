@@ -1,0 +1,1114 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace",
+  "data": {
+    "config": {
+      "title": "Home",
+      "views": [
+        {
+          "path": "default_view",
+          "title": "Home",
+          "badges": [
+            {
+              "entity": "person.romain"
+            },
+            {
+              "entity": "sensor.cpu_temp_rpi"
+            },
+            {
+              "entity": "sun.sun"
+            }
+          ],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_today",
+                  "name": "Battery Charge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_total",
+                  "name": "Battery Charge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_current",
+                  "name": "Battery Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_today",
+                  "name": "Battery Discharge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_total",
+                  "name": "Battery Discharge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_mode",
+                  "name": "Battery mode"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_power",
+                  "name": "Battery Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_capacity",
+                  "name": "Battery Remaining Capacity"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_energy",
+                  "name": "Battery Remaining Energy"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_temperature",
+                  "name": "Battery Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_voltage",
+                  "name": "Battery Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_today",
+                  "name": "Consumed Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_total",
+                  "name": "Consumed Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_current",
+                  "name": "EPS 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_power",
+                  "name": "EPS 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_voltage",
+                  "name": "EPS 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_current",
+                  "name": "EPS 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_power",
+                  "name": "EPS 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_voltage",
+                  "name": "EPS 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_current",
+                  "name": "EPS 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_power",
+                  "name": "EPS 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_voltage",
+                  "name": "EPS 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_today",
+                  "name": "EPS Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_total",
+                  "name": "EPS Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_today",
+                  "name": "Feed-in Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_total",
+                  "name": "Feed-in Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_current",
+                  "name": "Grid 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_frequency",
+                  "name": "Grid 1 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_power",
+                  "name": "Grid 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_voltage",
+                  "name": "Grid 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_current",
+                  "name": "Grid 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_frequency",
+                  "name": "Grid 2 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_power",
+                  "name": "Grid 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_voltage",
+                  "name": "Grid 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_current",
+                  "name": "Grid 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_frequency",
+                  "name": "Grid 3 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_power",
+                  "name": "Grid 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_voltage",
+                  "name": "Grid 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_power",
+                  "name": "Grid Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_load_generator_power",
+                  "name": "Load/Generator Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv_energy_total",
+                  "name": "PV Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_current",
+                  "name": "PV1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_power",
+                  "name": "PV1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_voltage",
+                  "name": "PV1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_current",
+                  "name": "PV2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_power",
+                  "name": "PV2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_voltage",
+                  "name": "PV2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_radiator_temperature",
+                  "name": "Radiator Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_run_mode_text",
+                  "name": "Run mode text"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_today",
+                  "name": "Yield today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_total",
+                  "name": "Yield total"
+                }
+              ],
+              "title": "Solax SRFEYQKHWG"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_today",
+                  "name": "Battery Charge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_total",
+                  "name": "Battery Charge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_current",
+                  "name": "Battery Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_today",
+                  "name": "Battery Discharge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_total",
+                  "name": "Battery Discharge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_mode",
+                  "name": "Battery mode"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_power",
+                  "name": "Battery Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_capacity",
+                  "name": "Battery Remaining Capacity"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_energy",
+                  "name": "Battery Remaining Energy"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_temperature",
+                  "name": "Battery Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_voltage",
+                  "name": "Battery Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_today",
+                  "name": "Consumed Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_total",
+                  "name": "Consumed Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_current",
+                  "name": "EPS 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_power",
+                  "name": "EPS 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_voltage",
+                  "name": "EPS 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_current",
+                  "name": "EPS 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_power",
+                  "name": "EPS 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_voltage",
+                  "name": "EPS 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_current",
+                  "name": "EPS 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_power",
+                  "name": "EPS 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_voltage",
+                  "name": "EPS 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_today",
+                  "name": "EPS Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_total",
+                  "name": "EPS Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_today",
+                  "name": "Feed-in Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_total",
+                  "name": "Feed-in Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_current",
+                  "name": "Grid 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_frequency",
+                  "name": "Grid 1 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_power",
+                  "name": "Grid 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_voltage",
+                  "name": "Grid 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_current",
+                  "name": "Grid 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_frequency",
+                  "name": "Grid 2 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_power",
+                  "name": "Grid 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_voltage",
+                  "name": "Grid 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_current",
+                  "name": "Grid 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_frequency",
+                  "name": "Grid 3 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_power",
+                  "name": "Grid 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_voltage",
+                  "name": "Grid 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_power",
+                  "name": "Grid Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_load_generator_power",
+                  "name": "Load/Generator Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv_energy_total",
+                  "name": "PV Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_current",
+                  "name": "PV1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_power",
+                  "name": "PV1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_voltage",
+                  "name": "PV1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_current",
+                  "name": "PV2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_power",
+                  "name": "PV2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_voltage",
+                  "name": "PV2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_radiator_temperature",
+                  "name": "Radiator Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_run_mode_text",
+                  "name": "Run mode text"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_today",
+                  "name": "Yield today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_total",
+                  "name": "Yield total"
+                }
+              ],
+              "title": "Solax SRFEYQKHWG"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_today",
+                  "name": "Battery Charge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_total",
+                  "name": "Battery Charge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_current",
+                  "name": "Battery Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_today",
+                  "name": "Battery Discharge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_total",
+                  "name": "Battery Discharge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_mode",
+                  "name": "Battery mode"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_power",
+                  "name": "Battery Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_capacity",
+                  "name": "Battery Remaining Capacity"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_energy",
+                  "name": "Battery Remaining Energy"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_temperature",
+                  "name": "Battery Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_voltage",
+                  "name": "Battery Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_today",
+                  "name": "Consumed Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_total",
+                  "name": "Consumed Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_current",
+                  "name": "EPS 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_power",
+                  "name": "EPS 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_voltage",
+                  "name": "EPS 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_current",
+                  "name": "EPS 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_power",
+                  "name": "EPS 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_voltage",
+                  "name": "EPS 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_current",
+                  "name": "EPS 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_power",
+                  "name": "EPS 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_voltage",
+                  "name": "EPS 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_today",
+                  "name": "EPS Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_total",
+                  "name": "EPS Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_today",
+                  "name": "Feed-in Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_total",
+                  "name": "Feed-in Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_current",
+                  "name": "Grid 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_frequency",
+                  "name": "Grid 1 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_power",
+                  "name": "Grid 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_voltage",
+                  "name": "Grid 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_current",
+                  "name": "Grid 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_frequency",
+                  "name": "Grid 2 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_power",
+                  "name": "Grid 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_voltage",
+                  "name": "Grid 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_current",
+                  "name": "Grid 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_frequency",
+                  "name": "Grid 3 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_power",
+                  "name": "Grid 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_voltage",
+                  "name": "Grid 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_power",
+                  "name": "Grid Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_load_generator_power",
+                  "name": "Load/Generator Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv_energy_total",
+                  "name": "PV Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_current",
+                  "name": "PV1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_power",
+                  "name": "PV1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_voltage",
+                  "name": "PV1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_current",
+                  "name": "PV2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_power",
+                  "name": "PV2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_voltage",
+                  "name": "PV2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_radiator_temperature",
+                  "name": "Radiator Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_run_mode_text",
+                  "name": "Run mode text"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_today",
+                  "name": "Yield today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_total",
+                  "name": "Yield total"
+                }
+              ],
+              "title": "Solax SRFEYQKHWG"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_today",
+                  "name": "Battery Charge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_total",
+                  "name": "Battery Charge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_current",
+                  "name": "Battery Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_today",
+                  "name": "Battery Discharge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_total",
+                  "name": "Battery Discharge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_mode",
+                  "name": "Battery mode"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_power",
+                  "name": "Battery Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_capacity",
+                  "name": "Battery Remaining Capacity"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_energy",
+                  "name": "Battery Remaining Energy"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_temperature",
+                  "name": "Battery Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_voltage",
+                  "name": "Battery Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_today",
+                  "name": "Consumed Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_total",
+                  "name": "Consumed Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_current",
+                  "name": "EPS 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_power",
+                  "name": "EPS 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_voltage",
+                  "name": "EPS 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_current",
+                  "name": "EPS 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_power",
+                  "name": "EPS 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_voltage",
+                  "name": "EPS 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_current",
+                  "name": "EPS 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_power",
+                  "name": "EPS 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_voltage",
+                  "name": "EPS 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_today",
+                  "name": "EPS Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_total",
+                  "name": "EPS Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_today",
+                  "name": "Feed-in Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_total",
+                  "name": "Feed-in Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_current",
+                  "name": "Grid 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_frequency",
+                  "name": "Grid 1 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_power",
+                  "name": "Grid 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_voltage",
+                  "name": "Grid 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_current",
+                  "name": "Grid 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_frequency",
+                  "name": "Grid 2 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_power",
+                  "name": "Grid 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_voltage",
+                  "name": "Grid 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_current",
+                  "name": "Grid 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_frequency",
+                  "name": "Grid 3 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_power",
+                  "name": "Grid 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_voltage",
+                  "name": "Grid 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_power",
+                  "name": "Grid Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_load_generator_power",
+                  "name": "Load/Generator Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv_energy_total",
+                  "name": "PV Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_current",
+                  "name": "PV1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_power",
+                  "name": "PV1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_voltage",
+                  "name": "PV1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_current",
+                  "name": "PV2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_power",
+                  "name": "PV2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_voltage",
+                  "name": "PV2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_radiator_temperature",
+                  "name": "Radiator Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_run_mode_text",
+                  "name": "Run mode text"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_today",
+                  "name": "Yield today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_total",
+                  "name": "Yield total"
+                }
+              ],
+              "title": "Solax SRFEYQKHWG"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_today",
+                  "name": "Battery Charge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_total",
+                  "name": "Battery Charge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_current",
+                  "name": "Battery Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_today",
+                  "name": "Battery Discharge Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_total",
+                  "name": "Battery Discharge Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_mode",
+                  "name": "Battery mode"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_power",
+                  "name": "Battery Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_capacity",
+                  "name": "Battery Remaining Capacity"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_energy",
+                  "name": "Battery Remaining Energy"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_temperature",
+                  "name": "Battery Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_voltage",
+                  "name": "Battery Voltage"
+                },
+                {
+                  "entity": "sensor.keller_solax_combined_pv_battery",
+                  "name": "Combined PV+Battery"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_today",
+                  "name": "Consumed Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_total",
+                  "name": "Consumed Energy total"
+                },
+                {
+                  "entity": "sensor.keller_solax_electricity_consumed_daily_swm",
+                  "name": "Electricity Consumed Daily (SWM)"
+                },
+                {
+                  "entity": "sensor.keller_solax_electricity_consumer_tariff_price",
+                  "name": "Electricity Consumer Tariff Price"
+                },
+                {
+                  "entity": "sensor.keller_solax_electricity_feed_in_tariff_price",
+                  "name": "Electricity Feed-in Tariff Price"
+                },
+                {
+                  "entity": "sensor.keller_solax_energy_consumed_daily_swm",
+                  "name": "Energy Consumed Daily (SWM)"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_current",
+                  "name": "EPS 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_power",
+                  "name": "EPS 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_1_voltage",
+                  "name": "EPS 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_current",
+                  "name": "EPS 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_power",
+                  "name": "EPS 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_2_voltage",
+                  "name": "EPS 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_current",
+                  "name": "EPS 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_power",
+                  "name": "EPS 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_3_voltage",
+                  "name": "EPS 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_today",
+                  "name": "EPS Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_eps_energy_total",
+                  "name": "EPS Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_today",
+                  "name": "Feed-in Energy today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_total",
+                  "name": "Feed-in Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_current",
+                  "name": "Grid 1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_frequency",
+                  "name": "Grid 1 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_power",
+                  "name": "Grid 1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_voltage",
+                  "name": "Grid 1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_current",
+                  "name": "Grid 2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_frequency",
+                  "name": "Grid 2 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_power",
+                  "name": "Grid 2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_voltage",
+                  "name": "Grid 2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_current",
+                  "name": "Grid 3 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_frequency",
+                  "name": "Grid 3 Frequency"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_power",
+                  "name": "Grid 3 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_voltage",
+                  "name": "Grid 3 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_power",
+                  "name": "Grid Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_load_generator_power",
+                  "name": "Load/Generator Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv_energy_total",
+                  "name": "PV Energy total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_current",
+                  "name": "PV1 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_power",
+                  "name": "PV1 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_voltage",
+                  "name": "PV1 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_current",
+                  "name": "PV2 Current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_power",
+                  "name": "PV2 Power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_voltage",
+                  "name": "PV2 Voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_radiator_temperature",
+                  "name": "Radiator Temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_run_mode_text",
+                  "name": "Run mode text"
+                },
+                {
+                  "entity": "sensor.keller_solax_swm_load",
+                  "name": "SWM Load"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_today",
+                  "name": "Yield today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_total",
+                  "name": "Yield total"
+                }
+              ],
+              "title": "Solax"
+            }
+          ],
+          "visible": [
+            {
+              "user": "b0a10ec610ce4486a84e28d83cd758dc"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            },
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

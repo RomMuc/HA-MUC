@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "id": "d4c675bd270d4656942c41436e150d0e",
+        "type": "module",
+        "url": "/hacsfiles/mini-media-player/mini-media-player-bundle.js?hacstag=14852083811612"
+      },
+      {
+        "id": "d6b83e73674c49db8b17fadd954b7788",
+        "type": "module",
+        "url": "/hacsfiles/button-card/button-card.js?hacstag=146194325701"
+      },
+      {
+        "url": "/hacsfiles/scheduler-card/scheduler-card.js?hacstag=2862701574019",
+        "type": "module",
+        "id": "81ab311c63ed47c08ab5596ec356f797"
+      },
+      {
+        "url": "/webrtc/webrtc-camera.js?v3.1.0",
+        "type": "module",
+        "id": "c79865433a9d44088bd735334f51f810"
+      },
+      {
+        "url": "/hacsfiles/lovelace-card-mod/card-mod.js?hacstag=190927524421",
+        "type": "module",
+        "id": "e656992e55f44229b1e61d58dba50f35"
+      },
+      {
+        "id": "32821ee4deef4c39b453177e8baac972",
+        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375522",
+        "type": "module"
+      },
+      {
+        "id": "4b74862c2ad34a41b787375d131ddd08",
+        "url": "/hacsfiles/flex-horseshoe-card/flex-horseshoe-card.js?hacstag=207292725547",
+        "type": "module"
+      },
+      {
+        "id": "0bb9b019ac3e4bc39e89ab09d8505952",
+        "url": "/hacsfiles/flex-table-card/flex-table-card.js?hacstag=15629205814",
+        "type": "module"
+      },
+      {
+        "id": "605797ccec814128bbaba08795197e3a",
+        "url": "/hacsfiles/modern-circular-gauge/modern-circular-gauge.js?hacstag=8717303430141",
+        "type": "module"
+      },
+      {
+        "id": "b4fb3ab2940841d0a8c4f00f5ad98535",
+        "url": "/hacsfiles/config-template-card/config-template-card.js?hacstag=172177543136",
+        "type": "module"
+      }
+    ]
+  }
+}

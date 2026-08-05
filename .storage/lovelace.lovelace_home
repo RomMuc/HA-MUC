@@ -1,0 +1,2921 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace_home",
+  "data": {
+    "config": {
+      "title": "Home",
+      "views": [
+        {
+          "path": "default",
+          "type": "sections",
+          "max_columns": 4,
+          "dense_section_placement": true,
+          "title": "Home",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "tile",
+                  "entity": "sensor.nuki_entree_door_security_state",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "name": "Porte"
+                },
+                {
+                  "type": "tile",
+                  "entity": "lock.nuki_entree_lock",
+                  "name": "Clé"
+                },
+                {
+                  "type": "custom:modern-circular-gauge",
+                  "secondary": {
+                    "state_size": "small",
+                    "show_unit": true,
+                    "adaptive_state_color": true,
+                    "label": "Batt. Power",
+                    "entity": "sensor.solax_srfeyqkhwg_battery_power"
+                  },
+                  "tertiary": {
+                    "show_unit": true,
+                    "adaptive_state_color": true,
+                    "show_state": true,
+                    "entity": "sensor.solax_srfeyqkhwg_pv1_power",
+                    "label": "Solar Prod"
+                  },
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_capacity",
+                  "needle": true,
+                  "start_from_zero": false,
+                  "adaptive_state_color": true,
+                  "header_position": "top",
+                  "smooth_segments": true,
+                  "show_header": true,
+                  "adaptive_icon_color": true,
+                  "segments": [
+                    {
+                      "from": "0",
+                      "color": [
+                        255,
+                        58,
+                        48
+                      ]
+                    },
+                    {
+                      "color": [
+                        218,
+                        81,
+                        0
+                      ],
+                      "from": 25
+                    },
+                    {
+                      "from": 50,
+                      "color": [
+                        217,
+                        236,
+                        55
+                      ]
+                    },
+                    {
+                      "from": 75,
+                      "color": [
+                        1,
+                        133,
+                        0
+                      ]
+                    },
+                    {
+                      "from": 90,
+                      "color": [
+                        5,
+                        69,
+                        0
+                      ]
+                    }
+                  ],
+                  "name": "Solar & Battery",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 4
+                  },
+                  "gauge_foreground_style": {
+                    "opacity": 0.76
+                  },
+                  "gauge_background_style": {
+                    "color": "grey"
+                  },
+                  "show_icon": true,
+                  "show_state": true,
+                  "show_seconds": true,
+                  "gauge_radius": 45,
+                  "show_entity_picture": false,
+                  "gauge_type": "standard",
+                  "icon": "{% if states('sensor.solax_srfeyqkhwg_battery_power') | float(2) > 0 %} \n  mdi:battery-charging\n{% elif states('sensor.solax_srfeyqkhwg_battery_power') | float(2) < 0 %} \n  mdi:battery-arrow-down\n{% elif states('sensor.solax_srfeyqkhwg_battery_remaining_capacity') | float(2) < 11 %}  \n  mdi:battery-10\n{%- else -%}  \n  mdi:battery      \n{% endif %}\n",
+                  "decimals": 0
+                },
+                {
+                  "type": "custom:modern-circular-gauge",
+                  "tertiary": {
+                    "entity": "sensor.keller_solax_swm_load",
+                    "needle": false,
+                    "adaptive_state_color": true,
+                    "gauge_foreground_style": {
+                      "color": "darkred",
+                      "opacity": 1,
+                      "width": 6
+                    },
+                    "gauge_background_style": {
+                      "opacity": 1,
+                      "width": 6
+                    },
+                    "segments": [],
+                    "start_from_zero": false,
+                    "show_seconds": false,
+                    "unit_superscript": true,
+                    "adaptive_label_color": false,
+                    "state_text": "{% if (states('sensor.solax_srfeyqkhwg_grid_power') | int) > 0 %}\n –\n{% else %}  \n  {{ states('sensor.solax_srfeyqkhwg_grid_power') | int | abs }}\n{% endif %}\n      ",
+                    "label": "SWM (Grid)"
+                  },
+                  "secondary": {
+                    "adaptive_state_color": true,
+                    "gauge_foreground_style": {
+                      "color": "DarkGreen",
+                      "opacity": 1,
+                      "width": 6
+                    },
+                    "gauge_background_style": {
+                      "opacity": 1,
+                      "color": "darkred",
+                      "width": 6
+                    },
+                    "needle": true,
+                    "entity": "sensor.keller_solax_combined_pv_battery",
+                    "show_gauge": "inner",
+                    "max": " \n\n{% set pv_battery = states('sensor.keller_solax_combined_pv_battery') | int(0) %}\n{% set swm_load = states('sensor.solax_srfeyqkhwg_grid_power') | int(0) %}\n\n{{ pv_battery - swm_load if swm_load < 0 else pv_battery }}\n",
+                    "state_size": "small",
+                    "start_from_zero": false,
+                    "unit_superscript": true,
+                    "show_seconds": true,
+                    "adaptive_label_color": false,
+                    "inverted_mode": false,
+                    "show_in_graph": false,
+                    "smooth_segments": true,
+                    "adaptive_graph_range": false,
+                    "segments": [
+                      {
+                        "color": "darkgreen",
+                        "from": 0
+                      },
+                      {
+                        "color": "darkgreen",
+                        "from": "{{ states('sensor.keller_solax_combined_pv_battery') | int(0) / 3 }}"
+                      },
+                      {
+                        "from": "{{ states('sensor.keller_solax_combined_pv_battery') | int(0) /2 }}",
+                        "color": "darkgreen"
+                      },
+                      {
+                        "color": "darkgreen",
+                        "from": "{{ states('sensor.keller_solax_combined_pv_battery') | int(0) / 1.5 }}"
+                      },
+                      {
+                        "from": "{{ states('sensor.keller_solax_combined_pv_battery') | int(0) }}",
+                        "color": "darkred"
+                      }
+                    ],
+                    "label": "Green Energy"
+                  },
+                  "gauge_type": "standard",
+                  "entity": "sensor.solax_srfeyqkhwg_load_generator_power",
+                  "needle": false,
+                  "label": "House Load",
+                  "adaptive_state_color": true,
+                  "smooth_segments": true,
+                  "header_position": "top",
+                  "show_icon": true,
+                  "adaptive_icon_color": true,
+                  "show_entity_picture": false,
+                  "segments": [
+                    {
+                      "color": "{% if                ((states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) == 0) %}  DarkGreen\n{% elif                    ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.95) %}  DarkRed\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.8) %}  Red\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.6)  %}  DarkOrange\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.4) %}  GreenYellow\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.2) %} LimeGreen\n{% elif            ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0) %}  Green\n{%- else -%}  DarkGreen\n{% endif %}\n"
+                    }
+                  ],
+                  "gauge_foreground_style": {
+                    "opacity": 0,
+                    "color": "darkgreen",
+                    "width": 4
+                  },
+                  "show_header": true,
+                  "gauge_background_style": {
+                    "opacity": 0,
+                    "color": "darkred",
+                    "width": 4
+                  },
+                  "show_graph": false,
+                  "start_from_zero": false,
+                  "show_state": true,
+                  "show_unit": true,
+                  "unit_superscript": true,
+                  "inverted_mode": false,
+                  "show_in_graph": true,
+                  "adaptive_graph_range": false,
+                  "name": "House Load",
+                  "adaptive_label_color": false,
+                  "max": "\n\n{% set pv_battery = states('sensor.keller_solax_combined_pv_battery') | int(0) %}\n{% set swm_load = states('sensor.solax_srfeyqkhwg_grid_power') | int(0) %}\n\n{{ pv_battery + swm_load if swm_load < 0 else pv_battery }}\n",
+                  "icon": "mdi:leaf-circle-outline"
+                },
+                {
+                  "type": "custom:modern-circular-gauge",
+                  "tertiary": {
+                    "entity": "sensor.keller_solax_swm_load",
+                    "show_gauge": "inner",
+                    "label": "SWM",
+                    "needle": false,
+                    "adaptive_state_color": true,
+                    "gauge_foreground_style": {
+                      "color": "darkred",
+                      "opacity": 1
+                    },
+                    "gauge_background_style": {
+                      "opacity": 1
+                    },
+                    "segments": [],
+                    "max": " {{ states('sensor.max_helper_for_power_consumption') | int }}",
+                    "start_from_zero": false,
+                    "show_seconds": false
+                  },
+                  "secondary": {
+                    "entity": "sensor.keller_solax_combined_pv_battery",
+                    "show_gauge": "inner",
+                    "label": "Solar & Batt",
+                    "adaptive_state_color": true,
+                    "gauge_foreground_style": {
+                      "color": "DarkGreen",
+                      "opacity": 1
+                    },
+                    "gauge_background_style": {
+                      "opacity": 1
+                    },
+                    "max": " {{ states('sensor.max_helper_for_power_consumption') | int }}",
+                    "needle": false
+                  },
+                  "gauge_type": "standard",
+                  "entity": "sensor.solax_srfeyqkhwg_load_generator_power",
+                  "needle": false,
+                  "label": "House Load",
+                  "adaptive_state_color": true,
+                  "smooth_segments": false,
+                  "header_position": "top",
+                  "max": " {{ states('sensor.max_helper_for_power_consumption') | int }}",
+                  "show_icon": true,
+                  "adaptive_icon_color": true,
+                  "show_entity_picture": false,
+                  "segments": [
+                    {
+                      "color": "{% if                ((states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) == 0) %}  DarkGreen\n{% elif                    ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) ) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.95) %}  DarkRed\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) ) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.8) %}  Red\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) ) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.6)  %}  DarkOrange\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) ) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.4) %}  GreenYellow\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) ) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0.2) %} LimeGreen\n{% elif            ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) ) / (states('sensor.solax_srfeyqkhwg_load_generator_power') | float(2)) > 0) %}  Green\n{%- else -%}  DarkGreen\n{% endif %}\n"
+                    }
+                  ],
+                  "gauge_foreground_style": {
+                    "opacity": 0.69,
+                    "width": 4
+                  },
+                  "show_header": true,
+                  "gauge_background_style": {
+                    "opacity": 1
+                  },
+                  "name": "Elect. distribution",
+                  "visibility": [
+                    {
+                      "condition": "user",
+                      "users": []
+                    }
+                  ]
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "show_current": true,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.forecast_home",
+                  "forecast_type": "daily",
+                  "name": "Munich",
+                  "layout_options": {
+                    "grid_columns": 4,
+                    "grid_rows": 4
+                  }
+                },
+                {
+                  "type": "custom:mini-media-player",
+                  "entity": "media_player.romain_s_echo_dot",
+                  "source": "full",
+                  "artwork": "cover",
+                  "tts": {
+                    "platform": "alexa",
+                    "entity_id": "media_player.romain_s_echo_dot"
+                  }
+                }
+              ],
+              "column_span": 1
+            }
+          ],
+          "badges": [
+            {
+              "type": "custom:mushroom-template-badge",
+              "entity": "sensor.vicare_outside_temperature",
+              "label": "Outside",
+              "color": "{% if states(entity) | float(0) > 30 %}  Red\n{% elif states(entity) | float(0) > 25 %}  DarkOrange\n{% elif states(entity) | float(0) > 20 %}  Orange\n{% elif states(entity) | float(0) > 10 %}\n  YellowGreen\n{% elif states(entity) | float(0) > 5 %}\n  LightSeaGreen\n{% elif states(entity) | float(0) > 0 %}\n  Cyan\n{% elif states(entity) | float(0) > -10 %}\n  RoyalBlue\n{% elif states(entity) | float(0) > -20 %}\n  Blue\n{%- else -%}\n  White\n{% endif %}",
+              "icon": "mdi:thermometer-lines",
+              "content": "{{states.sensor.vicare_outside_temperature.state_with_unit}}",
+              "tap_action": {
+                "action": "more-info"
+              }
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.doorbell_battery_scaled",
+              "name": "Doorbell",
+              "show_entity_picture": false,
+              "card_mod": {
+                "style": {
+                  "ha-badge": {
+                    "$": ".badge {\n  position: relative;\n  display: inline-block;\n  border: none !important;\n  overflow: hidden;\n}\n.badge::before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border: 3px solid var(--badge-color);\n  border-radius: inherit;\n  {% set perc = states(config.entity)|float(0) %}\n  mask: conic-gradient(rgba(0, 0, 0, 1) 0% {{perc}}%, rgba(0, 0, 0, 0) {{perc}}% 100%);\n}\n"
+                  }
+                }
+              }
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.nuki_entree_battery",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "name": "Entrée",
+              "card_mod": {
+                "style": {
+                  "ha-badge": {
+                    "$": ".badge {\n  position: relative;\n  display: inline-block;\n  border: none !important;\n  overflow: hidden;\n}\n.badge::before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border: 3px solid var(--badge-color);\n  border-radius: inherit;\n  {% set perc = states(config.entity)|float(0) %}\n  mask: conic-gradient(rgba(0, 0, 0, 1) 0% {{perc}}%, rgba(0, 0, 0, 0) {{perc}}% 100%);\n}\n"
+                  }
+                }
+              }
+            },
+            {
+              "type": "custom:mod-card",
+              "card": {
+                "type": "custom:mushroom-template-badge",
+                "content": "{{ states.sensor.solax_srfeyqkhwg_pv1_power.state_with_unit }}",
+                "icon": "mdi:solar-power-variant",
+                "color": "{% if states(entity) | float(0) > 4000 %}  DarkGreen\n{% elif states(entity) | float(0) > 3000 %}  ForestGreen\n{% elif states(entity) | float(0) > 1000 %}  YellowGreen\n{% elif states(entity) | float(0) > 500 %}  PaleGreen\n{% elif states(entity) | float(0) > 200 %}  Cyan\n{% elif states(entity) | float(0) > 100 %}  LightCyan\n{%- else -%}  Grey\n{% endif %}",
+                "entity": "sensor.solax_srfeyqkhwg_pv1_power",
+                "label": "Solar Pow.",
+                "tap_action": {
+                  "action": "more-info"
+                }
+              },
+              "card_mod": {
+                "style": {
+                  "mushroom-template-badge": {
+                    "$": "\n{% set perc = (states('sensor.solax_srfeyqkhwg_pv1_power') | float(0)) / 5000.0 * 100.0 %}\n\nha-state-icon {\n  {% if perc > 0 %} \n    animation: pulse 2s ease-in-out infinite;\n  {%- else -%}  \n    animation: none;\n  {% endif %}          \n}\n.badge::before {\n  content: '';\n  position: absolute;\n  top: -1px;\n  left: -1px;\n  right: -1px;\n  bottom: -1px;\n  border: 3px solid var(--badge-color);\n  border-radius: inherit;\n  mask: conic-gradient(rgba(0, 0, 0, 1) 0% {{perc}}%, rgba(0, 0, 0, 0) {{perc}}% 100%);\n}\n\n\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    opacity: 0.7;\n  }\n  50% {\n    transform: scale(1.2);\n    opacity: 1;\n  }\n  100% {\n    transform: scale(1);\n    opacity: 0.7;\n  }\n}\n"
+                  },
+                  ".": "ha-card {\n  background: none;\n  border: none;\n    }\n"
+                }
+              },
+              "visibility": [
+                {
+                  "condition": "numeric_state",
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_power",
+                  "above": 0
+                }
+              ]
+            },
+            {
+              "type": "custom:mod-card",
+              "card": {
+                "type": "custom:mushroom-template-badge",
+                "content": "{{ states.sensor.solax_srfeyqkhwg_battery_remaining_capacity.state_with_unit }}",
+                "icon": "{% if states('sensor.solax_srfeyqkhwg_battery_power') | float(2) > 0 %} \nmdi:battery-charging\n\n{% elif states('sensor.solax_srfeyqkhwg_battery_power') | float(2) < 0 %} \nmdi:battery-arrow-down\n\n{% elif states('sensor.solax_srfeyqkhwg_battery_remaining_capacity') | float(2) < 11 %}  \nmdi:battery-10\n\n{%- else -%}  \nmdi:battery              \n{% endif %}\n",
+                "color": "{% if states('sensor.solax_srfeyqkhwg_battery_power') | float(2) > 0 %}  Green\n{% elif states('sensor.solax_srfeyqkhwg_battery_power') | float(2) < 0 %}  DarkOrange\n{% elif states('sensor.solax_srfeyqkhwg_battery_remaining_capacity') | float(2) < 11 %}   Red\n{%- else -%}   Green        {% endif %}\n",
+                "entity": "sensor.solax_srfeyqkhwg_battery_remaining_capacity",
+                "label": "Solar Batt.",
+                "tap_action": {
+                  "action": "more-info"
+                }
+              },
+              "card_mod": {
+                "style": {
+                  "mushroom-template-badge": {
+                    "$": "ha-state-icon {\n  {% if states('sensor.solax_srfeyqkhwg_battery_power') | float(2) > 0 %} \n    animation: pulse 2s ease-in-out infinite;\n  {% elif states('sensor.solax_srfeyqkhwg_battery_power') | float(2) < 0 %} \n    animation: pulse 2s ease-in-out infinite;\n  {%- else -%}  \n    animation: none;\n  {% endif %}          \n}\n.badge::before {\n  content: '';\n  position: absolute;\n  top: -1px;\n  left: -1px;\n  right: -1px;\n  bottom: -1px;\n  border: 3px solid var(--badge-color);\n  border-radius: inherit;\n  mask: conic-gradient(rgba(0, 0, 0, 1) 0% {{states('sensor.solax_srfeyqkhwg_battery_remaining_capacity')}}%, rgba(0, 0, 0, 0) {{states('sensor.solax_srfeyqkhwg_battery_remaining_capacity')}}% 100%);\n}\n\n\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    opacity: 0.7;\n  }\n  50% {\n    transform: scale(1.2);\n    opacity: 1;\n  }\n  100% {\n    transform: scale(1);\n    opacity: 0.7;\n  }\n}\n"
+                  },
+                  ".": "ha-card {\n  background: none;\n  border: none;\n    }\n"
+                }
+              }
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "{{states.sensor.solax_srfeyqkhwg_load_generator_power.state_with_unit}}",
+              "icon": "mdi:current-ac",
+              "color": "{% if                ((states(entity) | float(2)) > 0) %}  DarkGreen\n{% elif                    ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs ) / (states(entity) | float(2)) > 0.95) %}  DarkRed\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs ) / (states(entity) | float(2)) > 0.8) %}  Red\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs) / (states(entity) | float(2)) > 0.6)  %}  DarkOrange\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs ) / (states(entity) | float(2)) > 0.4) %}  GreenYellow\n{% elif                     ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs ) / (states(entity) | float(2)) > 0.2) %} LimeGreen\n{% elif            ((states('sensor.solax_srfeyqkhwg_grid_power') | float(2) | abs ) / (states(entitys) | float(2)) > 0) %}  Green\n{%- else -%}  DarkGreen\n{% endif %}\n",
+              "entity": "sensor.solax_srfeyqkhwg_load_generator_power",
+              "label": "House Load",
+              "tap_action": {
+                "action": "more-info"
+              }
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.shellysmokekeller_smoke",
+              "name": "Smoke",
+              "display_type": "complete",
+              "icon": "mdi:smoke-detector-variant",
+              "show_entity_picture": false,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.shellysmokekeller_smoke",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Keypad Batt.",
+              "icon": "mdi:battery-alert",
+              "color": "red",
+              "entity": "binary_sensor.nuki_entree_keypad_battery_critical",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b"
+                  ]
+                },
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.nuki_entree_keypad_battery_critical",
+                  "state_not": "off"
+                }
+              ],
+              "label": ""
+            },
+            {
+              "type": "entity",
+              "icon": "mdi:basket-fill",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.bwt_regenerative_rem_days",
+              "name": "BWT",
+              "show_entity_picture": false,
+              "card_mod": {
+                "style": {
+                  "ha-badge": {
+                    "$": ".badge {\n  position: relative;\n  display: inline-block;\n  border: none !important;\n  overflow: hidden;\n}\n.badge::before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border: 3px solid var(--badge-color);\n  border-radius: inherit;\n  {% set perc = states('sensor.bwt_regenerative_level')|float(0) %}\n  mask: conic-gradient(rgba(0, 0, 0, 1) 0% {{perc}}%, rgba(0, 0, 0, 0) {{perc}}% 100%);\n}\n"
+                  }
+                }
+              }
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "entity": "sensor.bwt_state",
+              "label": "BWT",
+              "content": "{{ \nstates.sensor.bwt_state.state_with_unit\n}}",
+              "color": "{% if states(entity) == \"OK\" %}  Green\n{% elif states(entity) == \"Warning\" %}  Orange\n{% elif states(entity) == \"Error\" %}  DarkRed\n{%- else -%}  White\n{% endif %}",
+              "icon": "mdi:list-status",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "sensor.bwt_state",
+                  "state_not": "OK"
+                }
+              ]
+            }
+          ],
+          "background": {
+            "image": "/api/image/serve/5c63ccc0c82fd0f7a9ddf2ad486b7c8a/original"
+          },
+          "icon": "mdi:home-assistant",
+          "cards": [],
+          "visible": [
+            {
+              "user": "b0a10ec610ce4486a84e28d83cd758dc"
+            },
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            },
+            {
+              "user": "328b6ac946254e4aa6a7b2808a44ad35"
+            }
+          ],
+          "header": {
+            "layout": "center",
+            "badges_position": "bottom",
+            "badges_wrap": "wrap"
+          }
+        },
+        {
+          "type": "sections",
+          "path": "",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Lights Wohnzimmer ",
+                  "heading_style": "title",
+                  "icon": "mdi:ceiling-light"
+                },
+                {
+                  "type": "tile",
+                  "layout_options": {
+                    "grid_columns": 2,
+                    "grid_rows": 1
+                  },
+                  "entity": "switch.light_esstisch",
+                  "name": "Esstisch",
+                  "icon": "mdi:vanity-light",
+                  "vertical": true,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "group.ambiance_lights_wohnzimmer",
+                  "name": "Ambiance",
+                  "icon": "mdi:lamps",
+                  "vertical": true,
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon_tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "group.wohnzimmer_decke",
+                  "name": "Decke",
+                  "vertical": true
+                },
+                {
+                  "type": "tile",
+                  "entity": "group.sofa_lights",
+                  "name": "Sofa",
+                  "icon": "mdi:floor-lamp-dual",
+                  "vertical": true
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:blinds-horizontal",
+                  "heading_style": "title",
+                  "heading": "Rollos EG"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "cover-open-close"
+                    },
+                    {
+                      "type": "cover-position"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "cover.rollo_eg",
+                  "layout_options": {
+                    "grid_columns": "full",
+                    "grid_rows": 3
+                  },
+                  "show_entity_picture": false,
+                  "hide_state": false,
+                  "vertical": true
+                }
+              ],
+              "column_span": 1
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Muffel ",
+                  "heading_style": "title",
+                  "icon": "mdi:robot-vacuum"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "locate"
+                      ]
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "vacuum.muffel",
+                  "layout_options": {
+                    "grid_columns": "full",
+                    "grid_rows": 2
+                  },
+                  "vertical": true
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.muffel_battery",
+                  "name": "Battery"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.muffel_bin_full",
+                  "name": "Bin full"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.muffel_total_cleaning_time",
+                  "name": "Cleaning time"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.muffel_total_missions",
+                  "name": "Nr Missions"
+                }
+              ],
+              "column_span": 1
+            }
+          ],
+          "background": {
+            "image": "/api/image/serve/af82411bd39c78992909ef3cd997edb3/original"
+          },
+          "max_columns": 3,
+          "cards": [],
+          "title": "Living-room",
+          "icon": "mdi:sofa",
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "sensor.0x7c31fafffef2a2b2_temperature"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.0x7c31fafffef2a2b2_humidity"
+            }
+          ]
+        },
+        {
+          "title": "Küche",
+          "path": "kuche",
+          "icon": "mdi:countertop-outline",
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "group.kueche_lights"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "binary_sensor.motion_kuche",
+                  "icon": "mdi:motion-sensor",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "binary_sensor.motion_kuche_door_occupancy",
+                  "icon": "mdi:motion-sensor",
+                  "secondary_info": "last-changed",
+                  "name": "Motion above Door"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "binary_sensor.kuche_door_contact",
+                  "icon": "mdi:door-open",
+                  "secondary_info": "last-changed",
+                  "name": "Tür"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "sensor.kuche_door_contact_battery"
+                },
+                {
+                  "entity": "sensor.motion_kuche_door_battery"
+                }
+              ],
+              "title": "Lights Küche",
+              "state_color": true,
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "328b6ac946254e4aa6a7b2808a44ad35"
+                  ]
+                }
+              ],
+              "show_header_toggle": false
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "binary_sensor.0x00124b00292b8a08_contact",
+                  "icon": "mdi:door-open",
+                  "secondary_info": "last-updated",
+                  "name": "Tür"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "sensor.0x00124b00292b8a08_battery",
+                  "secondary_info": "last-updated"
+                }
+              ],
+              "state_color": true,
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "b0a10ec610ce4486a84e28d83cd758dc"
+                  ]
+                }
+              ],
+              "show_header_toggle": false,
+              "title": "Kühlschrank Tür"
+            }
+          ],
+          "background": {
+            "image": "/api/image/serve/53b141f28080184bac03f12acc737bba/original"
+          }
+        },
+        {
+          "icon": "mdi:home-floor-1",
+          "path": "",
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.motion_detector_1_og",
+                  "name": "Combined - Flur oder Treppe",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "binary_sensor.motion_1_og_occupancy",
+                  "icon": "mdi:motion-sensor",
+                  "secondary_info": "last-changed",
+                  "name": "Flur"
+                },
+                {
+                  "entity": "binary_sensor.motion_treppe_occupancy",
+                  "name": "Treppe",
+                  "secondary_info": "last-changed",
+                  "icon": "mdi:motion-sensor"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "sensor.motion_1_og_battery",
+                  "secondary_info": "last-updated",
+                  "name": "Flur"
+                },
+                {
+                  "entity": "sensor.motion_treppe_battery",
+                  "secondary_info": "last-updated",
+                  "name": "Treppe"
+                }
+              ],
+              "title": "Movement detectors",
+              "state_color": true
+            },
+            {
+              "type": "light",
+              "icon": "mdi:ceiling-light",
+              "entity": "light.0x001788010f34ca39"
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "timer.flur_1og_light",
+              "show_entity_picture": false,
+              "name": "Aus in...",
+              "state_content": [
+                "remaining_time",
+                "sec"
+              ],
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "timer.flur_1og_light",
+                  "state_not": "idle"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "show_entity_picture": false,
+              "tap_action": {
+                "action": "toggle"
+              },
+              "icon": "mdi:ceiling-light",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "light.flur_1_og",
+                  "state_not": "unavailable"
+                }
+              ],
+              "entity": "light.0x001788010f34ca39",
+              "state_content": "last_changed"
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "{% if states(entity) == 'unavailable' %}  Unavailable\n{% endif %}\n",
+              "icon": "{% if states(entity) == 'unavailable' %}\n mdi:lightbulb-off\n{%- else -%}  mdi:ceiling-light                  \n{% endif %}\n",
+              "color": "{% if states(entity) == 'unavailable' %}  Red\n{% elif states(entity) == 'on' %}  var(--state-active-color) \n{% elif states(entity) == 'off' %}  var(--state-icon-color)\n{%- else -%}  White                  \n{% endif %}\n\n",
+              "tap_action": {
+                "action": "toggle"
+              },
+              "label": "Flur 1. OG",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "light.flur_1_og",
+                  "state": "unavailable"
+                }
+              ],
+              "entity": "light.0x001788010f34ca39"
+            }
+          ],
+          "visible": [
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            },
+            {
+              "user": "b0a10ec610ce4486a84e28d83cd758dc"
+            },
+            {
+              "user": "328b6ac946254e4aa6a7b2808a44ad35"
+            }
+          ],
+          "background": {
+            "image": "/api/image/serve/b83d157c83fc109599c7af27a9b75e0c/original"
+          }
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Solar",
+          "path": "solar",
+          "icon": "mdi:solar-power-variant",
+          "visible": [
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            },
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            }
+          ],
+          "badges": [],
+          "cards": [
+            {
+              "title": "Energy today",
+              "type": "energy-distribution",
+              "link_dashboard": true
+            },
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_capacity"
+                }
+              ],
+              "title": "Battery",
+              "hours_to_show": 96
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_capacity"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_power"
+                },
+                {
+                  "entity": "sensor.keller_solax_swm_load",
+                  "name": "SWM Load (if consumed)"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_load_generator_power"
+                },
+                {
+                  "entity": "sensor.keller_solax_combined_pv_battery"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_charge_energy_total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_discharge_energy_total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_mode"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_remaining_energy"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_battery_voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_consumed_energy_total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_feed_in_energy_total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_1_voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_2_voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_grid_3_voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv_energy_total"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv1_voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_current"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_power"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_pv2_voltage"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_radiator_temperature"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_run_mode_text"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_today"
+                },
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_yield_total"
+                }
+              ]
+            },
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "sensor.solax_srfeyqkhwg_load_generator_power"
+                }
+              ],
+              "title": "Household Consumption",
+              "hours_to_show": 48
+            },
+            {
+              "type": "statistic",
+              "entity": "sensor.solar_power_max",
+              "period": {
+                "calendar": {
+                  "period": "month"
+                }
+              },
+              "stat_type": "max",
+              "name": "Solar Historical Max (this month) ",
+              "unit": "W "
+            },
+            {
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.solax_srfeyqkhwg_consumed_energy_total",
+                "sensor.solax_srfeyqkhwg_feed_in_energy_total",
+                "sensor.solax_srfeyqkhwg_pv_energy_total",
+                "sensor.vicare_heating_gas_consumption_this_week",
+                "sensor.vicare_hot_water_gas_consumption_this_week"
+              ],
+              "days_to_show": 720,
+              "period": "week",
+              "chart_type": "line",
+              "stat_types": [
+                "sum"
+              ],
+              "hide_legend": false,
+              "logarithmic_scale": false
+            }
+          ]
+        },
+        {
+          "title": "Water",
+          "path": "water",
+          "icon": "mdi:water",
+          "visible": [
+            {
+              "user": "b0a10ec610ce4486a84e28d83cd758dc"
+            },
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": false,
+              "show_icon": true,
+              "entity": "sensor.bwt_holiday_mode",
+              "color": "amber",
+              "visibility": [
+                {
+                  "condition": "numeric_state",
+                  "above": 0
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "entity": "sensor.bwt_state",
+              "content": "{{ \nstates.sensor.bwt_state.state_with_unit\n}}",
+              "color": "{% if states('sensor.bwt_state') == \"OK\" %}  Green\n{% elif states('sensor.bwt_state') == \"Warning\" %}  Orange\n{% elif states('sensor.bwt_state') == \"Error\" %}  DarkRed\n{%- else -%}  White\n{% endif %}",
+              "icon": "mdi:list-status",
+              "label": "Status "
+            },
+            {
+              "type": "entity",
+              "icon": "mdi:basket-fill",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.bwt_regenerative_rem_days",
+              "name": "Salt remaining",
+              "show_entity_picture": false,
+              "card_mod": {
+                "style": {
+                  "ha-badge": {
+                    "$": ".badge {\n  position: relative;\n  display: inline-block;\n  border: none !important;\n  overflow: hidden;\n}\n.badge::before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border: 3px solid var(--badge-color);\n  border-radius: inherit;\n  {% set perc = states('sensor.bwt_regenerative_level')|float(0) %}\n  mask: conic-gradient(rgba(0, 0, 0, 1) 0% {{perc}}%, rgba(0, 0, 0, 0) {{perc}}% 100%);\n}\n"
+                  }
+                }
+              }
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.bwt_active_errors",
+              "show_entity_picture": false,
+              "color": "red",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "sensor.bwt_active_errors",
+                  "state_not": ""
+                }
+              ],
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace-home/error-codes-bwt"
+              }
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.water_flow_above_10",
+              "state_content": "last_changed",
+              "name": "Flow"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.next_technician_visit",
+              "name": "Next Tech. Insp",
+              "icon": "mdi:book-check"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.next_self_inspection_bwt",
+              "name": "Self Insp.",
+              "icon": "mdi:clipboard-check-multiple-outline"
+            }
+          ],
+          "cards": [
+            {
+              "type": "custom:modern-circular-gauge",
+              "secondary": {
+                "entity": "sensor.bwt_regenerative_rem_days",
+                "unit": "days left",
+                "state_size": "small"
+              },
+              "tertiary": {
+                "entity": "sensor.bwt_current_flow"
+              },
+              "entity": "sensor.bwt_regenerative_level",
+              "name": "Salt Level",
+              "header_position": "top",
+              "smooth_segments": true,
+              "adaptive_icon_color": false,
+              "segments": [
+                {
+                  "from": 0,
+                  "color": [
+                    255,
+                    58,
+                    48
+                  ]
+                },
+                {
+                  "from": 25,
+                  "color": [
+                    255,
+                    171,
+                    1
+                  ]
+                },
+                {
+                  "from": 50,
+                  "color": [
+                    150,
+                    211,
+                    95
+                  ]
+                },
+                {
+                  "from": 75,
+                  "color": [
+                    102,
+                    157,
+                    52
+                  ]
+                },
+                {
+                  "from": 90,
+                  "color": [
+                    0,
+                    63,
+                    18
+                  ]
+                }
+              ],
+              "needle": true,
+              "start_from_zero": false,
+              "show_state": true,
+              "show_unit": true,
+              "adaptive_state_color": true
+            },
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "binary_sensor.water_flow_above_10",
+                  "secondary_info": "last-changed"
+                }
+              ],
+              "title": "Water flowing",
+              "logarithmic_scale": false,
+              "hours_to_show": 1
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.bwt_water_treated_day"
+                },
+                {
+                  "entity": "sensor.bwt_water_treated_month"
+                },
+                {
+                  "entity": "sensor.bwt_water_treated_year"
+                },
+                {
+                  "entity": "sensor.bwt_current_flow"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.bwt_cap_col1"
+                },
+                {
+                  "entity": "sensor.bwt_cap_col2"
+                },
+                {
+                  "entity": "sensor.bwt_last_regen_col_1"
+                },
+                {
+                  "entity": "sensor.bwt_last_regen_col_2"
+                },
+                {
+                  "entity": "sensor.bwt_reg_col1_count"
+                },
+                {
+                  "entity": "sensor.bwt_reg_col2_count"
+                },
+                {
+                  "entity": "sensor.bwt_holiday_mode"
+                },
+                {
+                  "entity": "sensor.bwt_active_errors"
+                },
+                {
+                  "entity": "sensor.bwt_last_serv_customer"
+                },
+                {
+                  "entity": "sensor.bwt_last_serv_technician"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Chambre enfants",
+          "path": "gabriel",
+          "icon": "mdi:bed",
+          "visible": [
+            {
+              "user": "b0a10ec610ce4486a84e28d83cd758dc"
+            },
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            },
+            {
+              "user": "328b6ac946254e4aa6a7b2808a44ad35"
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "cover.rollo_gabriel"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "cover.rollo_alba",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.rollo_alba_1_rssi",
+              "name": "Alba 1",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.rollo_alba_2_rssi",
+              "name": "Alba 2",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.rollo_gabriel_1_rssi",
+              "name": "Gabriel 1"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "name": "Gabriel 2",
+              "entity": "sensor.rollogabriel2_rssi"
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "group.alba_lights",
+              "icon": "mdi:ceiling-light-multiple",
+              "show_entity_picture": false,
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304"
+                  ]
+                }
+              ]
+            }
+          ],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "cover.rollo_gabriel"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "cover.rollo_alba"
+              ],
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "b0a10ec610ce4486a84e28d83cd758dc"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Networks",
+          "path": "internet",
+          "icon": "mdi:access-point-network",
+          "visible": [
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            }
+          ],
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.cpu_temp_rpi",
+                  "icon": "mdi:thermometer"
+                },
+                {
+                  "entity": "binary_sensor.rpi_power_status"
+                },
+                {
+                  "entity": "sensor.uptime",
+                  "name": "Last restart"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.internet"
+                },
+                {
+                  "entity": "sensor.speedtest_download",
+                  "name": "Download",
+                  "secondary_info": "last-updated"
+                },
+                {
+                  "entity": "sensor.speedtest_upload",
+                  "name": "Upload",
+                  "secondary_info": "last-updated"
+                },
+                {
+                  "entity": "sensor.speedtest_ping",
+                  "name": "Ping"
+                }
+              ],
+              "title": "Internet ",
+              "state_color": false,
+              "show_header_toggle": false
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.ha_remote_switch_0_device_temperature",
+                  "name": "HA Remote Switch Temp"
+                },
+                {
+                  "entity": "sensor.ha_remote_switch_0_power",
+                  "name": "HA Remote Power"
+                }
+              ]
+            },
+            {
+              "type": "entity-filter",
+              "entities": [
+                {
+                  "entity": "sensor.synology_volume_used_volume_1",
+                  "name": "NAS Used (%)",
+                  "icon": "mdi:harddisk"
+                },
+                {
+                  "entity": "sensor.synology_used_space_volume_1",
+                  "name": "NAS Used (TB)",
+                  "icon": "mdi:harddisk"
+                },
+                {
+                  "entity": "sensor.synology_total_size_volume_1",
+                  "name": "NAS Storage available",
+                  "icon": "mdi:harddisk"
+                },
+                {
+                  "entity": "sensor.synology_cpu_load_total",
+                  "name": "NAS CPU Usage"
+                },
+                {
+                  "entity": "sensor.hp_envy_5530_series",
+                  "name": "Printer - Status"
+                },
+                {
+                  "entity": "sensor.hp_envy_5530_series_black_ink",
+                  "name": "Printer - Black ink level"
+                },
+                {
+                  "entity": "sensor.hp_envy_5530_series_tri_color_ink",
+                  "name": "Printer - Color ink level"
+                }
+              ],
+              "state_filter": [
+                {
+                  "operator": "!=",
+                  "value": "unavailable"
+                }
+              ],
+              "card": {
+                "title": "NAS, Printer, etc",
+                "type": "entities"
+              }
+            },
+            {
+              "show_name": true,
+              "show_icon": true,
+              "type": "button",
+              "tap_action": {
+                "action": "call-service",
+                "service": "homeassistant.update_entity",
+                "target": {
+                  "entity_id": "sensor.speedtest_download"
+                }
+              },
+              "entity": "sensor.speedtest_download",
+              "name": "Manual download / upload test",
+              "icon": "mdi:speedometer",
+              "show_state": false,
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "sensor.hp_deskjet_2900_series",
+                "sensor.hp_deskjet_2900_series_black_ink",
+                "sensor.hp_deskjet_2900_series_tri_color_ink"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Keller",
+          "path": "keller",
+          "icon": "mdi:home-floor-b",
+          "visible": [
+            {
+              "user": "b0a10ec610ce4486a84e28d83cd758dc"
+            },
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            }
+          ],
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.flood_basement_flood",
+                  "secondary_info": "last-updated",
+                  "name": "Dry/Humid? "
+                },
+                {
+                  "entity": "sensor.flood_basement_temperature",
+                  "secondary_info": "last-updated",
+                  "name": "Temperature "
+                },
+                {
+                  "entity": "sensor.flood_basement_battery",
+                  "secondary_info": "last-updated",
+                  "name": "Battery "
+                }
+              ],
+              "title": "Water leak detector basement "
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.shellysmokekeller_battery",
+                  "secondary_info": "last-updated"
+                },
+                {
+                  "entity": "binary_sensor.shellysmokekeller_smoke",
+                  "secondary_info": "last-updated"
+                }
+              ],
+              "title": "Smoke detector",
+              "state_color": true
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Heizung",
+          "path": "heizung",
+          "icon": "mdi:radiator",
+          "visible": [
+            {
+              "user": "b0a10ec610ce4486a84e28d83cd758dc"
+            },
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            }
+          ],
+          "badges": [],
+          "cards": [
+            {
+              "entity": "climate.vicare_heating",
+              "name": "Heizanlage",
+              "type": "thermostat"
+            },
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "sensor.vicare_outside_temperature"
+                }
+              ],
+              "hours_to_show": 72,
+              "refresh_interval": 0,
+              "title": "Outside temperature"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "binary_sensor.vicare_dhw_charging_active",
+                "binary_sensor.vicare_dhw_circulation_pump_active",
+                "binary_sensor.vicare_dhw_pump_active",
+                "sensor.vicare_boiler_temperature",
+                "binary_sensor.vicare_burner_active",
+                "binary_sensor.vicare_circulation_pump_active",
+                "sensor.vicare_supply_temperature"
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Bad OG",
+          "path": "bad-og",
+          "icon": "mdi:bathtub-outline",
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "custom:scheduler-card",
+                  "include": [
+                    "switch.sonoff_10014dcff8"
+                  ],
+                  "exclude": []
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "automation.timer_serviette_bad_og"
+                    },
+                    {
+                      "entity": "switch.sonoff_10014dcff8"
+                    }
+                  ]
+                }
+              ],
+              "title": "2. OG",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "switch.light_bad_1og_washbecken"
+                    },
+                    {
+                      "entity": "switch.light_decke_bad_1og"
+                    }
+                  ],
+                  "state_color": true
+                }
+              ],
+              "title": "1. OG"
+            }
+          ],
+          "visible": [
+            {
+              "user": "b0a10ec610ce4486a84e28d83cd758dc"
+            },
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            },
+            {
+              "user": "328b6ac946254e4aa6a7b2808a44ad35"
+            }
+          ]
+        },
+        {
+          "title": "Nuki",
+          "path": "nuki",
+          "visible": [
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            }
+          ],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.nuki_entree_battery"
+                },
+                {
+                  "entity": "binary_sensor.nuki_entree_keypad_battery_critical"
+                },
+                {
+                  "entity": "switch.nuki_entree_button_enabled"
+                },
+                {
+                  "entity": "lock.nuki_entree_lock"
+                },
+                {
+                  "entity": "switch.nuki_lock_pre_release"
+                },
+                {
+                  "entity": "update.nuki_lock_update"
+                },
+                {
+                  "entity": "binary_sensor.nuki_entree_battery_charging"
+                },
+                {
+                  "entity": "binary_sensor.nuki_entree_battery_critical"
+                },
+                {
+                  "entity": "binary_sensor.nuki_entree_door_open"
+                },
+                {
+                  "entity": "sensor.nuki_entree_door_security_state"
+                },
+                {
+                  "entity": "sensor.nuki_entree_door_state"
+                },
+                {
+                  "entity": "sensor.nuki_entree_firmware_version"
+                },
+                {
+                  "entity": "sensor.nuki_entree_last_log"
+                },
+                {
+                  "entity": "sensor.nuki_entree_last_unlock_user"
+                },
+                {
+                  "entity": "binary_sensor.nuki_entree_locked"
+                },
+                {
+                  "entity": "sensor.nuki_entree_state"
+                },
+                {
+                  "entity": "device_tracker.nuki_1c02679c"
+                },
+                {
+                  "entity": "sensor.nuki_1c02679c_estimated_distance"
+                }
+              ]
+            }
+          ],
+          "type": "masonry",
+          "icon": "mdi:door-closed-lock"
+        },
+        {
+          "title": "Shellies",
+          "path": "rollos",
+          "icon": "mdi:electric-switch",
+          "subview": false,
+          "visible": [
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            }
+          ],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "cover.rollo_wz1"
+                },
+                {
+                  "entity": "cover.rollo_wz2"
+                },
+                {
+                  "entity": "cover.rollo_wz3"
+                },
+                {
+                  "entity": "cover.rollo_wz4"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "cover.rollo_bad_eg"
+                },
+                {
+                  "entity": "cover.rollo_kueche"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "group.wohnzimmer_decke"
+                },
+                {
+                  "entity": "switch.light_esstisch"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "switch.light_decke_bad_1og"
+                },
+                {
+                  "entity": "switch.light_bad_1og_washbecken"
+                },
+                {
+                  "entity": "cover.rollo_bad_1og"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "cover.rollo_alba_1"
+                },
+                {
+                  "entity": "cover.rollo_alba_2"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "cover.rollo_gabriel_1"
+                },
+                {
+                  "entity": "cover.rollo_gabriel_2"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "divider"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.rollo_wz1_rssi"
+                },
+                {
+                  "entity": "sensor.rollo_wz2_rssi"
+                },
+                {
+                  "entity": "sensor.rollo_wz3_signal_strength"
+                },
+                {
+                  "entity": "sensor.rollo_wz4_rssi"
+                },
+                {
+                  "entity": "sensor.wohnzimmer_decke_rssi"
+                },
+                {
+                  "entity": "sensor.light_esstisch_rssi"
+                },
+                {
+                  "entity": "sensor.rollo_kueche_rssi"
+                },
+                {
+                  "entity": "sensor.shellyplus2pm_c4d8d5523c70_rssi"
+                },
+                {
+                  "entity": "sensor.rollo_bad_1og_rssi"
+                },
+                {
+                  "entity": "sensor.light_decke_bad_1og_rssi"
+                },
+                {
+                  "entity": "sensor.light_bad_1og_washbecken_rssi"
+                },
+                {
+                  "entity": "sensor.rollo_gabriel_1_rssi"
+                },
+                {
+                  "entity": "sensor.rollogabriel2_rssi"
+                },
+                {
+                  "entity": "sensor.rollo_alba_1_rssi"
+                },
+                {
+                  "entity": "sensor.rollo_alba_2_rssi"
+                }
+              ]
+            },
+            {
+              "chart_type": "line",
+              "period": "hour",
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.rollo_wz1_rssi",
+                "sensor.rollo_wz2_rssi",
+                "sensor.rollo_wz3_rssi",
+                "sensor.rollo_wz4_rssi",
+                "sensor.wohnzimmer_decke_rssi",
+                "sensor.light_esstisch_rssi",
+                "sensor.rollo_kueche_rssi",
+                "sensor.shellyplus2pm_c4d8d5523c70_rssi",
+                "sensor.rollo_bad_1og_rssi",
+                "sensor.light_decke_bad_1og_rssi",
+                "sensor.light_bad_1og_washbecken_rssi",
+                "sensor.rollo_gabriel_2_rssi",
+                "sensor.rollo_gabriel_1_rssi",
+                "sensor.rollo_alba_1_rssi",
+                "sensor.rollo_alba_2_rssi"
+              ],
+              "stat_types": [
+                "mean"
+              ],
+              "hide_legend": false
+            },
+            {
+              "type": "logbook",
+              "entities": [
+                "automation.notify_test"
+              ],
+              "hours_to_show": 48
+            },
+            {
+              "chart_type": "line",
+              "period": "day",
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.rollo_kueche_power",
+                "sensor.rollo_wz1_power",
+                "sensor.rollo_wz2_power",
+                "sensor.rollo_wz3_power",
+                "sensor.rollo_wz4_power",
+                "sensor.rollo_bad_eg_power",
+                "sensor.rollo_gabriel_1_power",
+                "sensor.rollogabriel2_power",
+                "sensor.rollo_alba_1_power",
+                "sensor.rollo_alba_2_power",
+                "sensor.rollo_bad_1og_power"
+              ],
+              "stat_types": [
+                "max"
+              ],
+              "hide_legend": false,
+              "logarithmic_scale": false,
+              "title": "Max Power Rollos",
+              "days_to_show": 365,
+              "min_y_axis": 90,
+              "fit_y_data": false
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "counter.counter_unavailable_shellies",
+              "name": "Counter disc.",
+              "show_entity_picture": false,
+              "color": "red",
+              "visibility": [
+                {
+                  "condition": "numeric_state",
+                  "entity": "counter.counter_unavailable_shellies",
+                  "above": 0
+                }
+              ]
+            }
+          ],
+          "background": {
+            "opacity": 33,
+            "alignment": "center",
+            "size": "cover",
+            "repeat": "repeat",
+            "attachment": "fixed"
+          },
+          "type": "masonry"
+        },
+        {
+          "theme": "Backend-selected",
+          "path": "test1",
+          "title": "Home",
+          "icon": "mdi:home-assistant",
+          "visible": [],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.doorbell_battery_scaled",
+              "name": "Doorbell",
+              "show_entity_picture": false
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "entity": "sensor.vicare_outside_temperature",
+              "label": "Outside",
+              "color": "{% if states(entity) | float(0) > 30 %}  Red\n{% elif states(entity) | float(0) > 25 %}  DarkOrange\n{% elif states(entity) | float(0) > 20 %}  Orange\n{% elif states(entity) | float(0) > 10 %}\n  YellowGreen\n{% elif states(entity) | float(0) > 5 %}\n  LightSeaGreen\n{% elif states(entity) | float(0) > 0 %}\n  Cyan\n{% elif states(entity) | float(0) > -10 %}\n  RoyalBlue\n{% elif states(entity) | float(0) > -20 %}\n  Blue\n{%- else -%}\n  White\n{% endif %}",
+              "icon": "mdi:thermometer-lines",
+              "content": "{{states.sensor.vicare_outside_temperature.state_with_unit}}",
+              "tap_action": {
+                "action": "more-info"
+              }
+            },
+            {
+              "type": "entity",
+              "entity": "binary_sensor.shellysmokekeller_smoke",
+              "name": "Smoke",
+              "display_type": "complete",
+              "icon": "mdi:smoke-detector-variant",
+              "show_entity_picture": false,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.shellysmokekeller_smoke",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "entity": "sensor.bwt_state",
+              "label": "BWT",
+              "content": "{{ \nstates.sensor.bwt_state.state_with_unit\n}}",
+              "color": "{% if states(entity) == \"OK\" %}  Green\n{% elif states(entity) == \"Warning\" %}  Orange\n{% elif states(entity) == \"Error\" %}  DarkRed\n{%- else -%}  White\n{% endif %}",
+              "icon": "mdi:list-status",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "sensor.bwt_state",
+                  "state_not": "OK"
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "entity": "sensor.bwt_regenerative_rem_days",
+              "label": "BWT",
+              "icon": "mdi:basket-fill",
+              "content": "{{ states.sensor.bwt_regenerative_rem_days.state_with_unit }}",
+              "tap_action": {
+                "action": "more-info"
+              }
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "{{  states.sensor.qcells_cloud_powerdc_sum.state_with_unit }}",
+              "icon": "mdi:solar-power-variant",
+              "color": "{% if states(entity) | float(0) > 5000 %}  DarkGreen\n{% elif states(entity) | float(0) > 3000 %}  ForestGreen\n{% elif states(entity) | float(0) > 2000 %}  Green\n{% elif states(entity) | float(0) > 1000 %}  YellowGreen\n{% elif states(entity) | float(0) > 500 %}  PaleGreen\n{% elif states(entity) | float(0) > 200 %}  Cyan\n{% elif states(entity) | float(0) > 100 %}  LightCyan\n{%- else -%}  Grey\n{% endif %}",
+              "entity": "sensor.qcells_cloud_powerdc_sum",
+              "label": "Solar Pow.",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "numeric_state",
+                  "entity": "sensor.qcells_cloud_powerdc_sum",
+                  "above": 0
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "{{states.sensor.qcells_cloud_house_load.state_with_unit}}",
+              "icon": "mdi:current-ac",
+              "color": "{% if                ((states(entity) | float(2)) == 0) %}  DarkGreen\n{% elif                    ((states('sensor.qcells_cloud_grid_load') | float(2) ) / (states(entity) | float(2)) > 0.95) %}  DarkRed\n{% elif                     ((states('sensor.qcells_cloud_grid_load') | float(2) ) / (states(entity) | float(2)) > 0.8) %}  Red\n{% elif                     ((states('sensor.qcells_cloud_grid_load') | float(2) ) / (states(entity) | float(2)) > 0.6)  %}  DarkOrange\n{% elif                     ((states('sensor.qcells_cloud_grid_load') | float(2) ) / (states(entity) | float(2)) > 0.4) %}  GreenYellow\n{% elif                     ((states('sensor.qcells_cloud_grid_load') | float(2) ) / (states(entity) | float(2)) > 0.2) %} LimeGreen\n{% elif            ((states('sensor.qcells_cloud_grid_load') | float(2) ) / (states(entity) | float(2)) > 0) %}  Green\n{%- else -%}  DarkGreen\n{% endif %}\n",
+              "entity": "sensor.qcells_cloud_house_load",
+              "label": "House Load",
+              "tap_action": {
+                "action": "more-info"
+              }
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "{{ states.sensor.qcells_cloud_soc.state_with_unit }}",
+              "icon": "{% if states('sensor.qcells_cloud_battery_charge') | float(2)> 0 %}  mdi:battery-charging\n{% elif states('sensor.qcells_cloud_battery_discharge') | float(2) > 0 %}  mdi:battery-arrow-down\n{% elif states('sensor.qcells_cloud_soc') | float(2) < 11 %}  mdi:battery-10\n{%- else -%}  mdi:battery              \n{% endif %}\n",
+              "color": "{% if states('sensor.qcells_cloud_battery_charge') | float(2)> 0 %}  DarkGreen\n{% elif states('sensor.qcells_cloud_battery_discharge') | float(2) > 0 %}  DarkOrange\n{% elif states('sensor.qcells_cloud_soc') | float(2) < 11 %}  Red\n{%- else -%}  Green                  \n{% endif %}\n\n",
+              "entity": "sensor.qcells_cloud_soc",
+              "label": "Solar Batt.",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "picture": ""
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "Keypad Batt.",
+              "icon": "mdi:battery-alert",
+              "color": "red",
+              "entity": "binary_sensor.nuki_entree_keypad_battery_critical",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b"
+                  ]
+                },
+                {
+                  "condition": "state",
+                  "entity": "binary_sensor.nuki_entree_keypad_battery_critical",
+                  "state_not": "off"
+                }
+              ],
+              "label": ""
+            }
+          ],
+          "cards": [
+            {
+              "cards": [
+                {
+                  "entities": [
+                    {
+                      "entity": "sensor.nuki_entree_battery",
+                      "name": "Battery",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "sensor.nuki_entree_door_security_state",
+                      "name": "State",
+                      "secondary_info": "last-updated"
+                    },
+                    {
+                      "entity": "lock.nuki_entree_lock",
+                      "name": "Lock",
+                      "secondary_info": "last-changed"
+                    }
+                  ],
+                  "state_color": true,
+                  "title": "Porte Entrée",
+                  "type": "entities",
+                  "show_header_toggle": true
+                }
+              ],
+              "type": "vertical-stack",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b"
+                  ]
+                }
+              ]
+            },
+            {
+              "show_current": true,
+              "show_forecast": true,
+              "type": "weather-forecast",
+              "entity": "weather.forecast_home",
+              "name": "Munich",
+              "secondary_info_attribute": "wind_speed",
+              "forecast_type": "daily",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304"
+                  ]
+                }
+              ]
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.doorbell_black",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": []
+                }
+              ]
+            },
+            {
+              "type": "custom:mini-media-player",
+              "entity": "media_player.romain_s_echo_dot",
+              "name": "Alexa",
+              "tts": {
+                "platform": "alexa",
+                "entity_id": "media_player.romain_s_echo_dot"
+              },
+              "toggle_power": false,
+              "volume_stateless": false,
+              "group": false,
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304"
+                  ]
+                }
+              ]
+            }
+          ],
+          "background": {
+            "image": "/api/image/serve/5c63ccc0c82fd0f7a9ddf2ad486b7c8a/original"
+          }
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Living room",
+          "path": "living-room-old",
+          "icon": "mdi:sofa",
+          "visible": [],
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "cover.rollo_eg",
+              "display_type": "complete"
+            }
+          ],
+          "cards": [
+            {
+              "entities": [
+                {
+                  "entity": "switch.light_esstisch",
+                  "icon": "mdi:ceiling-light-multiple",
+                  "name": "Esstisch"
+                },
+                {
+                  "entity": "group.ambiance_lights_wohnzimmer",
+                  "icon": "mdi:floor-lamp",
+                  "name": "Ambiance"
+                },
+                {
+                  "entity": "group.wohnzimmer_decke",
+                  "icon": "mdi:ceiling-light-multiple",
+                  "name": "Decke"
+                },
+                {
+                  "entity": "group.sofa_lights",
+                  "icon": "",
+                  "name": "Sofa"
+                }
+              ],
+              "show_header_toggle": true,
+              "state_color": true,
+              "title": "Lights Wohnzimmer",
+              "type": "entities",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b"
+                  ]
+                }
+              ]
+            },
+            {
+              "entity": "cover.rollo_eg",
+              "hold_action": {
+                "action": "more-info"
+              },
+              "icon_height": "50px",
+              "show_icon": true,
+              "show_name": true,
+              "show_state": true,
+              "tap_action": {
+                "action": "toggle"
+              },
+              "type": "button",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b"
+                  ]
+                }
+              ]
+            },
+            {
+              "columns": 3,
+              "entities": [
+                {
+                  "entity": "vacuum.muffel"
+                },
+                {
+                  "entity": "binary_sensor.muffel_bin_full"
+                },
+                {
+                  "entity": "sensor.muffel_battery"
+                }
+              ],
+              "title": "Muffel",
+              "type": "glance",
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304"
+                  ]
+                }
+              ]
+            }
+          ],
+          "background": {
+            "image": "/api/image/serve/af82411bd39c78992909ef3cd997edb3/original"
+          }
+        },
+        {
+          "type": "panel",
+          "title": "Error codes BWT",
+          "path": "error-codes-bwt",
+          "icon": "mdi:alert-box-outline",
+          "sections": [],
+          "cards": [
+            {
+              "type": "markdown",
+              "content": "## Fehlerübersicht  \n\n| **Fehler ID** | **Kategorie**           | **Bedeutung**                       | **Beschreibung**                                                                 |\n|---------------|-------------------------|-------------------------------------|---------------------------------------------------------------------------------|\n| **1**         | Fehler                 | Motor / Ventil 1                    | Motor / Ventil 1 kann nicht angesteuert werden                                  |\n| **2**         | Fehler                 | Motor / Ventil 2                    | Motor / Ventil 2 kann nicht angesteuert werden                                  |\n| **3**         | Fehler                 | Verschneidemotor                    | Verschneidemotor kann nicht angesteuert werden                                  |\n| **5**         | Warnung                | Regeneriermittel demnächst leer     | Regeneriermittelfüllstand ist <= 20 %                                           |\n| **8**         | Fehler                 | Überstrom Motor / Ventil 1          | Leistungsaufnahme von Motor / Ventil 1 ist zu hoch                              |\n| **9**         | Fehler                 | Überstrom Motor / Ventil 2          | Leistungsaufnahme von Motor / Ventil 2 ist zu hoch                              |\n| **10**        | Fehler                 | Überstrom Motor / Ventil 3          | Leistungsaufnahme von Motor / Ventil 3 ist zu hoch                              |\n| **12**        | Fehler                 | Überstrom Magnetventil              | Leistungsaufnahme an einem der Magnetventile ist zu hoch                        |\n| **13**        | Fehler                 | AQA Stop Volume                     | Eingestelltes Volumen wurde überschritten                                       |\n| **14**        | Fehler                 | AQA Stop Sensor                     | Kabelgebundener Bodensensor hat ausgelöst                                       |\n| **15**        | Warnung                | AQA watch                           | Schleichwasser wurde festgestellt                                               |\n| **16**        | Warnung                | Druckschalter                       | Leitungsdruck ist abgesunken                                                    |\n| **21**        | Fehler                 | Kolben 1 / 2 Position               | Kolben 1 / 2 steht an undefinierter Position                                    |\n| **22**        | Fehler                 | Interne Elektronik                  | Fehler auf interner Elektronik                                                  |\n| **25**        | Warnung                | Regeneriermittelvolumen nicht erreicht | Bei der Regeneration wurde zu wenig Sole abgesaugt                             |\n| **26**        | Fehler                 | AQA Guard Wireless Sensor           | Kabelloser Bodensensor hat ausgelöst                                            |\n| **27**        | Fehler                 | Regeneriermittel leer               | Regeneriermittelfüllstand = 0 %                                                 |\n| **32**        | Warnung                | Routinemäßige Wartung fällig        | Die routinemäßige Wartung muss durch den Kunden durchgeführt werden             |\n| **33**        | Warnung                | Inspektion fällig                   | Die Inspektion muss durch den Kunden durchgeführt werden                        |\n| **34**        | Warnung                | Expertwartung fällig                | Die Expertwartung muss durch den Kundendienst durchgeführt werden               |\n| **35**        | Warnung                | Mineralstoffbehälter demnächst leer | Der Mineralstoffbehälter der Dosiereinheit                                      |\n| **36**        | Warnung                | Mineralstoffbehälter leer           | Der Mineralstoffbehälter der Dosiereinheit ist leer                             |\n| **43**        | Fehler                 | Ventil Überstrom                    | Leistungsaufnahme an einem der Magnetventile ist zu hoch                        |\n| **44**        | Fehler                 | Ventil Überstrom                    | Leistungsaufnahme an einem der Magnetventile ist zu hoch                        |\n| **45**        | Fehler                 | Ventil Dosierpumpe                  | Leistungsaufnahme der Dosierpumpe ist zu hoch                                   |\n| **46**        | Fehler                 | Ventil Kugelhahn                    | Leistungsaufnahme des Motorkugelhahns ist zu hoch                               |\n| **54**        | Warnung                | Wasserzähler zählt nicht            | Am Wasserzähler wurden für 30 Tage keine Impulse gezählt                        |\n| **55**        | Warnung                | Regenerationsablauf gestört         | Wiederholt wurde bei der Regeneration keine Sole abgesaugt                      |\n| **56**        | Fehler                 | Fehler bei Initialisierung PCB 1.0 | PCB 1.0 konnte nicht initialisiert werden                                       |\n| **57**        | Fehler                 | Fehler bei Initialisierung PCB 1.1 | PCB 1.1 konnte nicht initialisiert werden                                       |\n| **58**        | Fehler                 | Motor 1 verfahren                  | Position von Motor 1 fehlerhaft                                                 |\n| **59**        | Fehler                 | Motor 2 verfahren                  | Position von Motor 2 fehlerhaft                                                 |\n| **61**        | Warnung                | Leitfähigkeit zu hoch              | Die gemessene Leitfähigkeit ist zu hoch                                         |\n| **62**        | Warnung                | Leitfähigkeit Grenze 1             | Die gemessene Leitfähigkeit übersteigt Grenze 1                                 |\n| **63**        | Warnung                | Leitfähigkeit Grenze 2             | Die gemessene Leitfähigkeit übersteigt Grenze 2                                 |\n| **64**        | Warnung                | Leitfähigkeit Grenze Wasser        | Die gemessene Leitfähigkeit übersteigt Grenze Wasser                            |\n| **65**        | Fehler                 | Keine Funktion                     | Der Anlage steht keine Sole zur Verfügung, wodurch die Funktionalität nicht gegeben ist |\n| **66**        | Warnung                | Keine Verbindung zum Temperatur-Sensor | Die Verbindung zwischen Anlage und Temperatursensor ist getrennt               |\n| **67**        | Warnung                | Temperatur zu hoch                 | Die gemessene Temperatur ist zu hoch                                            |\n| **68**        | Fehler                 | Kugelhahn reagiert nicht           | Der Motorkugelhahn reagiert nicht                                               |\n| **74**        | Warnung                | Filter wechseln/spülen             | Erinnerung zum Wechseln/Spülen des externen Filters                             |\n| **75**        | Warnung                | Sole nicht gesättigt               | Eine nicht gesättigte Sole führt zu geringerer Kapazität                        |\n| **88**        | Warnung                | Dosierpumpe gestört                | Es liegt eine Störung der Dosierpumpe                                           |",
+              "title": "Error codes"
+            }
+          ],
+          "visible": []
+        },
+        {
+          "type": "sections",
+          "max_columns": 2,
+          "icon": "mdi:car",
+          "path": "",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Passat Doors/Windows"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_doors_locked",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Doors"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_trunk_locked"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_door_closed_left_front",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Door left front"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_door_closed_left_back",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Door left back"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_door_closed_right_front",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Door right front",
+                  "show_entity_picture": false,
+                  "hide_state": false
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_door_closed_right_back",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Door right back"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_window_closed_left_front",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Window left front"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_window_closed_right_front",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Window right front"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_window_closed_right_back",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Window right back"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_window_closed_left_back",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Window left back"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_hood_closed",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Hood",
+                  "icon": "mdi:car-select"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_trunk_closed",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "icon": "mdi:car-info"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_windows_closed"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.passat_parking_light"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Passat (various)",
+                  "icon": "mdi:car-cog"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_car_type"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_fuel_level"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_fuel_range"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_odometer"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_service_inspection_days"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_service_inspection_distance"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_oil_inspection_days"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_oil_inspection_distance"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_last_trip_average_fuel_consumption"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_last_trip_average_speed"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_last_trip_duration"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_last_trip_length"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_last_data_refresh"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.passat_last_connected"
+                }
+              ]
+            }
+          ],
+          "header": {
+            "layout": "start",
+            "badges_position": "bottom"
+          },
+          "visible": [
+            {
+              "user": "b0a10ec610ce4486a84e28d83cd758dc"
+            },
+            {
+              "user": "71551fda67ef415691f9505fd1ac7304"
+            },
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            }
+          ],
+          "cards": []
+        },
+        {
+          "type": "masonry",
+          "path": "test",
+          "title": "Test",
+          "cards": [
+            {
+              "type": "custom:flex-horseshoe-card",
+              "entities": [
+                {
+                  "entity": "sensor.bwt_regenerative_level",
+                  "decimals": 0,
+                  "unit": "%",
+                  "name": "Salt Level"
+                },
+                {
+                  "entity": "sensor.bwt_regenerative_rem_days",
+                  "decimals": 0,
+                  "unit": "D",
+                  "name": "Days left"
+                },
+                {
+                  "entity": "sensor.bwt_current_flow",
+                  "decimals": 0,
+                  "unit": "L/h",
+                  "name": "Flow",
+                  "icon": "mdi:faucet"
+                },
+                {
+                  "entity": "sensor.bwt_active_errors",
+                  "name": "Active Errors"
+                }
+              ],
+              "show": {
+                "horseshoe_style": "colorlineargradient"
+              },
+              "horseshoe_scale": {
+                "min": 0,
+                "max": 100
+              },
+              "color_stops": {
+                "0": "orange",
+                "100": "green"
+              },
+              "layout": {
+                "hlines": [
+                  {
+                    "id": 0,
+                    "xpos": 50,
+                    "ypos": 46,
+                    "length": 65,
+                    "styles": [
+                      {
+                        "opacity": "0.2;"
+                      }
+                    ]
+                  }
+                ],
+                "vlines": [
+                  {
+                    "id": 0,
+                    "xpos": 50,
+                    "ypos": 62,
+                    "length": 30,
+                    "styles": [
+                      {
+                        "opacity": "0.2;"
+                      }
+                    ]
+                  }
+                ],
+                "states": [
+                  {
+                    "id": 0,
+                    "entity_index": 0,
+                    "xpos": 50,
+                    "ypos": 40,
+                    "styles": [
+                      {
+                        "font-size": "1.5em;"
+                      },
+                      {
+                        "opacity": "0.9;"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 1,
+                    "entity_index": 1,
+                    "xpos": 46,
+                    "ypos": 61,
+                    "styles": [
+                      {
+                        "font-size": "1.5em;"
+                      },
+                      {
+                        "text-anchor": "end;"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "entity_index": 2,
+                    "xpos": 54,
+                    "ypos": 61,
+                    "styles": [
+                      {
+                        "font-size": "1.5em;"
+                      },
+                      {
+                        "text-anchor": "start;"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "entity_index": 3,
+                    "xpos": 67,
+                    "ypos": 88,
+                    "styles": [
+                      {
+                        "font-size": "0.7em;"
+                      },
+                      {
+                        "text-anchor": "start;"
+                      }
+                    ]
+                  }
+                ],
+                "names": [
+                  {
+                    "id": 0,
+                    "entity_index": 0,
+                    "xpos": 50,
+                    "ypos": 21,
+                    "styles": [
+                      {
+                        "font-size": "0.5em;"
+                      },
+                      {
+                        "opacity": "0.4;"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 1,
+                    "entity_index": 1,
+                    "xpos": 46,
+                    "ypos": 70,
+                    "styles": [
+                      {
+                        "font-size": "0.4em;"
+                      },
+                      {
+                        "text-anchor": "end;"
+                      },
+                      {
+                        "opacity": "0.7;"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 2,
+                    "entity_index": 2,
+                    "xpos": 54,
+                    "ypos": 70,
+                    "styles": [
+                      {
+                        "font-size": "0.4em;"
+                      },
+                      {
+                        "text-anchor": "start;"
+                      },
+                      {
+                        "opacity": "0.7;"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "entity_index": 3,
+                    "xpos": 45,
+                    "ypos": 88,
+                    "styles": [
+                      {
+                        "font-size": "0.4em;"
+                      },
+                      {
+                        "text-anchor": "end;"
+                      },
+                      {
+                        "opacity": "0.7;"
+                      }
+                    ]
+                  }
+                ],
+                "icons": [
+                  {
+                    "id": 0,
+                    "entity_index": 1,
+                    "xpos": 28,
+                    "ypos": 70,
+                    "align": "end",
+                    "size": 0.5,
+                    "styles": [
+                      {
+                        "opacity": "0.7;"
+                      }
+                    ]
+                  },
+                  {
+                    "id": 1,
+                    "entity_index": 2,
+                    "xpos": 85,
+                    "ypos": 70,
+                    "align": "end",
+                    "size": 0.5,
+                    "styles": [
+                      {
+                        "opacity": "0.7;"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "badges": [
+            {
+              "type": "custom:mod-card",
+              "card": {
+                "type": "custom:mushroom-template-badge",
+                "content": "{{ states.sensor.qcells_cloud_soc.state_with_unit }}",
+                "icon": "{% if states('sensor.qcells_cloud_battery_charge') | float(2) > 0 %} \nmdi:battery-charging\n\n{% elif states('sensor.qcells_cloud_battery_discharge') | float(2) > 0 %} \nmdi:battery-arrow-down\n\n{% elif states('sensor.qcells_cloud_soc') | float(2) < 11 %}  \nmdi:battery-10\n\n{%- else -%}  \nmdi:battery              \n{% endif %}\n",
+                "color": "{% if states('sensor.qcells_cloud_battery_charge') | float(2) > 0 %}  Green\n{% elif states('sensor.qcells_cloud_battery_discharge') | float(2) > 0 %}  DarkOrange\n{% elif states('sensor.qcells_cloud_soc') | float(2) < 11 %}   Red\n{%- else -%}   Green        {% endif %}\n",
+                "entity": "sensor.qcells_cloud_soc",
+                "label": "Solar Batt.",
+                "tap_action": {
+                  "action": "more-info"
+                }
+              },
+              "card_mod": {
+                "style": {
+                  "mushroom-template-badge": {
+                    "$": "ha-state-icon {\n  {% if states('sensor.qcells_cloud_battery_charge') | float(2) > 0 %} \n    animation: pulse 2s ease-in-out infinite;\n  {% elif states('sensor.qcells_cloud_battery_discharge') | float(2) > 0 %} \n    animation: pulse 2s ease-in-out infinite;\n  {%- else -%}  \n    animation: none;\n  {% endif %}          \n}\n.badge::before {\n  content: '';\n  position: absolute;\n  top: -1px;\n  left: -1px;\n  right: -1px;\n  bottom: -1px;\n  border: 3px solid var(--badge-color);\n  border-radius: inherit;\n  mask: conic-gradient(rgba(0, 0, 0, 1) 0% {{states('sensor.qcells_cloud_soc')}}%, rgba(0, 0, 0, 0) {{states('sensor.qcells_cloud_soc')}}% 100%);\n}\n.info {\n  .label {\n    font-size: 20px;\n    --secondary-text-color: black;\n  }\n  .content {\n    font-size: 14px;\n}\n\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    opacity: 0.7;\n  }\n  50% {\n    transform: scale(1.2);\n    opacity: 1;\n  }\n  100% {\n    transform: scale(1);\n    opacity: 0.7;\n  }\n}\n"
+                  },
+                  ".": "ha-card {\n  background: none;\n  border: none;\n  --secondary-text-color: green;\n  --primary-text-color: blue;\n}\n"
+                }
+              }
+            },
+            {
+              "type": "custom:mushroom-template-card",
+              "icon": "mdi:battery",
+              "icon_color": "blue",
+              "card_mod": {
+                "label": "Test",
+                "style": "ha-card {\n  --card-primary-font-size: 20px;\n  border: none;\n  box-shadow: none;\n  background: rgba(0,0,0,0);\n}\n"
+              }
+            }
+          ],
+          "visible": [
+            {
+              "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

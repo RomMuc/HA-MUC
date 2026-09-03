@@ -1,8 +1,25 @@
+
+#old archived addon
+#influxdb:
+#  host: a0d7b954-influxdb
+#  port: 8086
+#  database: homeassistantmuc
+#  username: influxmuc
+#  password: !secret influxdb_pwd
+#  max_retries: 3
+#  default_measurement: state
+
+#influxdb v2
 influxdb:
-  #host: a0d7b954-influxdb
-  #port: 8086
-  #database: homeassistantmuc
-  #username: influxmuc
-  #password: !secret influxdb_pwd
-  max_retries: 3
-  default_measurement: state
+  api_version: 2
+  host: 192.168.2.130
+  ssl: false
+  port: 8087
+  token: !secret influx_apiToken
+  organization: !secret influx_orgID
+  bucket: HA_IDB_MUC
+  tags:
+    source: HA
+  tags_attributes:
+    - friendly_name
+  default_measurement: units

@@ -28,7 +28,17 @@
                 {
                   "type": "tile",
                   "entity": "lock.nuki_entree_lock",
-                  "name": "Clé"
+                  "name": "Clé",
+                  "visibility": [
+                    {
+                      "condition": "user",
+                      "users": [
+                        "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                        "71551fda67ef415691f9505fd1ac7304",
+                        "b0a10ec610ce4486a84e28d83cd758dc"
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "custom:modern-circular-gauge",
@@ -1893,7 +1903,8 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "cover.rollo_wz1"
+                  "entity": "cover.rollo_wz1",
+                  "name": "Rollo WZ1"
                 },
                 {
                   "entity": "cover.rollo_wz2"
@@ -1967,7 +1978,7 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "sensor.rollo_wz1_rssi"
+                  "entity": "sensor.shellyplus2pm_1c692046621c_signal_strength"
                 },
                 {
                   "entity": "sensor.rollo_wz2_rssi"
@@ -2014,13 +2025,11 @@
               ]
             },
             {
-              "chart_type": "line",
-              "period": "hour",
               "type": "statistics-graph",
               "entities": [
-                "sensor.rollo_wz1_rssi",
+                "sensor.shellyplus2pm_1c692046621c_signal_strength",
                 "sensor.rollo_wz2_rssi",
-                "sensor.rollo_wz3_rssi",
+                "sensor.rollo_wz3_signal_strength",
                 "sensor.rollo_wz4_rssi",
                 "sensor.wohnzimmer_decke_rssi",
                 "sensor.light_esstisch_rssi",
@@ -2029,11 +2038,13 @@
                 "sensor.rollo_bad_1og_rssi",
                 "sensor.light_decke_bad_1og_rssi",
                 "sensor.light_bad_1og_washbecken_rssi",
-                "sensor.rollo_gabriel_2_rssi",
+                "sensor.rollogabriel2_rssi",
                 "sensor.rollo_gabriel_1_rssi",
                 "sensor.rollo_alba_1_rssi",
                 "sensor.rollo_alba_2_rssi"
               ],
+              "period": "hour",
+              "chart_type": "line",
               "stat_types": [
                 "mean"
               ],

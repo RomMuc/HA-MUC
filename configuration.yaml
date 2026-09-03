@@ -7,14 +7,6 @@ tts:
     language: 'de'
     #base_url: http://192.168.2.192:8123
 
-http:
-  #For duckdns and the reverse proxy config
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 172.30.33.0/24
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
-
 #frontend: !include themes.yaml
 #  themes: !include themes.yaml
 

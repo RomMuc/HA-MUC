@@ -2,6 +2,7 @@ secrets.yaml
 *.db
 *.db-*
 .storage/
+!.storage/lovelace*
 .cloud/
 .google.token
 tts/

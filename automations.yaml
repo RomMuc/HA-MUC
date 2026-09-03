@@ -1043,23 +1043,62 @@
   - action: homeassistant.update_entity
     target:
       entity_id: sensor.qcells_cloud
-- id: '1781128896093'
-  alias: Switch electricity tariffs
+- id: '1788269352235'
+  alias: 'Switch offf lights if no activity '
   description: ''
   triggers:
-  - at: 06:00:00
-    variables:
-      tariff: Standard
-    trigger: time
-  - at: '21:00:00'
-    variables:
-      tariff: Standard
-    trigger: time
-  conditions: []
+  - trigger: time
+    at: 01:00:00
+  - trigger: time_pattern
+    hours: /1
+    enabled: false
+  conditions:
+  - type: is_not_occupied
+    condition: device
+    device_id: e9c76cc93687096a83c8f40e9b03f397
+    entity_id: 111719ac17ac5e39f27ca6ba4d3e8fdb
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - type: is_not_occupied
+    condition: device
+    device_id: ababbb1934e42f2301c27549584c6896
+    entity_id: 1cab4e47d101af434e90d70f33d232fa
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - type: is_not_occupied
+    condition: device
+    device_id: cdcaae63cd82e5796bef45a62481268f
+    entity_id: 2933062f88f7ec962d71a4ca95778dff
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - condition: device
+    type: is_off
+    device_id: e4309eb1d11f3cff31ebcfb4864f9256
+    entity_id: bcfdab2669634d1990e83d404f80e5ad
+    domain: remote
   actions:
-  - action: select.select_option
+  - action: light.turn_off
+    metadata: {}
+    data: {}
     target:
-      entity_id: select.solax_electricity_daily_energy
-    data:
-      option: '{{ tariff }}'
+      entity_id:
+      - light.sofa_wz
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.wohnzimmer_decke_switch_0
+      - switch.wohnzimmer_decke_switch_1
+      - switch.light_esstisch
+      - switch.ambiance_lights_wz
+    data: {}
   mode: single

@@ -438,11 +438,11 @@
   triggers:
   - entity_id:
     - sensor.speedtest_download
-    below: 20
+    below: 50
     trigger: numeric_state
   - entity_id:
     - sensor.speedtest_upload
-    below: 5
+    below: 20
     trigger: numeric_state
   conditions: []
   actions:

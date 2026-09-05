@@ -135,7 +135,7 @@
     entity_id: sensor.nuki_battery
     below: '15'
   action:
-  - service: notify.mobile_app_s21_rom
+  - service: notify.romain
     data:
       title: Battery door lock (Nuki) critical
       message: Battery level is {{ states("sensor.nuki_battery") }}%
@@ -163,7 +163,7 @@
     data:
       title: Battery doorbell critical
       message: Battery level is {{states("sensor.doorbell_battery") }}%
-  - service: notify.mobile_app_s21_rom
+  - service: notify.romain
     data:
       title: Battery doorbell critical
       message: Battery level is {{states("sensor.doorbell_battery") }}%
@@ -403,7 +403,7 @@
     data:
       title: ALARM WATER LEAK
       message: Water in basement
-  - service: notify.mobile_app_s21_rom
+  - service: notify.romain
     data:
       title: ALARM WATER LEAK
       message: Water in basement
@@ -558,7 +558,7 @@
     data:
       title: Battery smoke detector critical
       message: Battery level is {{states("sensor.shellysmokekeller_battery") }} %
-  - service: notify.mobile_app_s21_rom
+  - service: notify.romain
     data:
       title: Battery smoke detector critical
       message: Battery level is {{states("sensor.shellysmokekeller_battery") }} %
@@ -581,18 +581,10 @@
     data:
       title: 'SMOKE IN BASEMENT '
       message: 'Smoke in basements '
-  - service: notify.mobile_app_s21_rom
+  - service: notify.romain
     data:
       message: Smoke in basement
       title: 'SMOKE IN BASEMENT '
-  - service: notify.mobile_app_galaxy_watch5_pro_tcdz
-    data:
-      title: 'SMOKE IN BASEMENT '
-      message: Smoke in basement
-  - service: notify.mobile_app_romains_ipad_pro
-    data:
-      title: 'SMOKE IN BASEMENT '
-      message: 'Smoke in basement '
   mode: single
 - id: '1711563431876'
   alias: Keypad battery low
@@ -609,11 +601,7 @@
   - data:
       title: Battery door lock keypad (Nuki) low
       message: Battery door lock keypad (Nuki) low
-    action: notify.mobile_app_s21_rom
-  - data:
-      title: Battery door lock keypad (Nuki) low
-      message: Battery door lock keypad (Nuki) low
-    action: notify.persistent_notification
+    action: notify.romain
   mode: single
 - id: '1714313891067'
   alias: Monitor doorbell
@@ -634,7 +622,7 @@
     data:
       message: Doorbell unavailable :-(
       title: Doorbell connection lost
-  - service: notify.mobile_app_s21_rom
+  - service: notify.romain
     metadata: {}
     data:
       message: Doorbell connection lost

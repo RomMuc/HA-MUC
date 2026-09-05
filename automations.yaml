@@ -1070,7 +1070,7 @@
       seconds: 0
   - condition: device
     type: is_off
-    device_id: e4309eb1d11f3cff31ebcfb4864f9256
+    device_id: ab81b08783ec67cf2f66567a791a6961
     entity_id: bcfdab2669634d1990e83d404f80e5ad
     domain: remote
   actions:
@@ -1089,4 +1089,16 @@
       - switch.light_esstisch
       - switch.ambiance_lights_wz
     data: {}
+  mode: single
+- id: '1788631325487'
+  alias: test notify
+  description: ''
+  triggers: []
+  conditions: []
+  actions:
+  - action: notify.romain
+    metadata: {}
+    data:
+      message: test
+      title: test notif
   mode: single

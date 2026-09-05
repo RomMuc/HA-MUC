@@ -1,7 +1,6 @@
-notify:
-  - platform: group
-    name: romain
-    services:
-      - service: mobile_app_s25_rom
-      - service: mobile_app_romains_ipad_pro
-      - service: mobile_app_galaxy_watch5_pro_tcdz
+- platform: group
+  name: romain
+  services:
+    - service: mobile_app_s25_rom
+    - service: mobile_app_romains_ipad_pro
+    - service: mobile_app_galaxy_watch5_pro_rom

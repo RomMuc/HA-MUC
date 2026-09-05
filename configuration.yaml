@@ -35,5 +35,6 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 cover: !include covers.yaml #Grouping rollos per room and/or floors
+notify: !include notify.yaml
 
 

@@ -11,6 +11,7 @@ custom_components/
 .shopping_list.json
 .sonoff.json
 .ha_run.lock
+home-assistant.log.fault
 promtail/
 deps/
 tmp/

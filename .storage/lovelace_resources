@@ -31,7 +31,7 @@
       },
       {
         "id": "32821ee4deef4c39b453177e8baac972",
-        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375522",
+        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375523",
         "type": "module"
       },
       {
@@ -52,6 +52,31 @@
       {
         "id": "b4fb3ab2940841d0a8c4f00f5ad98535",
         "url": "/hacsfiles/config-template-card/config-template-card.js?hacstag=172177543136",
+        "type": "module"
+      },
+      {
+        "id": "93170630ecb64f5590a22a04d2640cc6",
+        "url": "/local/ookla_speedtest/ookla-speedtest-card.js?v=3.1.2",
+        "type": "module"
+      },
+      {
+        "id": "62d61887b2884a89a7fb3b5399641342",
+        "url": "/local/ookla_speedtest/ookla-speedtest-minimal.js?v=3.1.2",
+        "type": "module"
+      },
+      {
+        "id": "957cb51d10d84fc4b5deb0add6c8a61a",
+        "url": "/local/ookla_speedtest/ookla-speedtest-compact.js?v=3.1.2",
+        "type": "module"
+      },
+      {
+        "id": "bd03c9890bd2435ebc307abc607068c7",
+        "url": "/local/ookla_speedtest/ookla-speedtest-dashboard.js?v=3.1.2",
+        "type": "module"
+      },
+      {
+        "id": "7444cd09a5de4d33bedc1b1210aa5efa",
+        "url": "/local/ookla_speedtest/ookla-speedtest-card-simple.js?v=3.1.2",
         "type": "module"
       }
     ]

@@ -1039,7 +1039,7 @@
     at: 01:00:00
   - trigger: time_pattern
     hours: /1
-    enabled: false
+    enabled: true
   conditions:
   - type: is_not_occupied
     condition: device
@@ -1073,6 +1073,15 @@
     device_id: ab81b08783ec67cf2f66567a791a6961
     entity_id: bcfdab2669634d1990e83d404f80e5ad
     domain: remote
+  - condition: occupancy.is_not_detected
+    target:
+      entity_id: binary_sensor.motion_wz_occupancy
+    options:
+      behavior: any
+      for:
+        hours: 2
+        minutes: 0
+        seconds: 0
   actions:
   - action: light.turn_off
     metadata: {}

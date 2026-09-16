@@ -595,7 +595,10 @@
                   "vertical": true
                 }
               ],
-              "column_span": 1
+              "column_span": 1,
+              "background": {
+                "opacity": 80
+              }
             },
             {
               "type": "grid",
@@ -626,7 +629,10 @@
                   "vertical": true
                 }
               ],
-              "column_span": 1
+              "column_span": 1,
+              "background": {
+                "opacity": 80
+              }
             },
             {
               "type": "grid",
@@ -677,7 +683,10 @@
                   "name": "Nr Missions"
                 }
               ],
-              "column_span": 1
+              "column_span": 1,
+              "background": {
+                "opacity": 80
+              }
             }
           ],
           "background": {
@@ -712,101 +721,304 @@
           ]
         },
         {
-          "title": "Küche",
-          "path": "kuche",
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Kueche",
+          "path": "kueche",
           "icon": "mdi:countertop-outline",
-          "cards": [
+          "sections": [
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "group.kueche_lights"
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Licht",
+                  "icon": "mdi:lightbulb"
                 },
                 {
-                  "type": "divider"
+                  "color": "state",
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "group.kueche_lights"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "binary_sensor.motion_kuche",
+                      "icon": "mdi:motion-sensor",
+                      "secondary_info": "last_changed"
+                    },
+                    {
+                      "entity": "binary_sensor.motion_kuche_door_occupancy",
+                      "icon": "mdi:motion-sensor",
+                      "name": "Motion above Door",
+                      "secondary_info": "last_changed"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "binary_sensor.kuche_door_contact",
+                      "icon": "mdi:door-open",
+                      "name": "Tür",
+                      "secondary_info": "last_changed"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "sensor.kuche_door_contact_battery"
+                    },
+                    {
+                      "entity": "sensor.motion_kuche_door_battery"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "user",
+                      "users": [
+                        "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                        "71551fda67ef415691f9505fd1ac7304",
+                        "b0a10ec610ce4486a84e28d83cd758dc",
+                        "328b6ac946254e4aa6a7b2808a44ad35"
+                      ]
+                    }
+                  ],
+                  "show_header_toggle": false
                 },
                 {
-                  "entity": "binary_sensor.motion_kuche",
-                  "icon": "mdi:motion-sensor",
-                  "secondary_info": "last-changed"
+                  "type": "tile",
+                  "entity": "binary_sensor.0x00124b00292b8a08_contact"
                 },
                 {
-                  "entity": "binary_sensor.motion_kuche_door_occupancy",
-                  "icon": "mdi:motion-sensor",
-                  "secondary_info": "last-changed",
-                  "name": "Motion above Door"
-                },
-                {
-                  "type": "divider"
-                },
-                {
-                  "entity": "binary_sensor.kuche_door_contact",
-                  "icon": "mdi:door-open",
-                  "secondary_info": "last-changed",
-                  "name": "Tür"
-                },
-                {
-                  "type": "divider"
-                },
-                {
-                  "entity": "sensor.kuche_door_contact_battery"
-                },
-                {
-                  "entity": "sensor.motion_kuche_door_battery"
+                  "type": "tile",
+                  "entity": "sensor.0x00124b00292b8a08_battery",
+                  "vertical": false,
+                  "features_position": "bottom"
                 }
               ],
-              "title": "Lights Küche",
-              "state_color": true,
-              "visibility": [
-                {
-                  "condition": "user",
-                  "users": [
-                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
-                    "71551fda67ef415691f9505fd1ac7304",
-                    "b0a10ec610ce4486a84e28d83cd758dc",
-                    "328b6ac946254e4aa6a7b2808a44ad35"
-                  ]
-                }
-              ],
-              "show_header_toggle": false
+              "column_span": 1,
+              "background": {
+                "opacity": 80
+              }
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "type": "divider"
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Geschirrspüler ",
+                  "icon": "mdi:dishwasher"
                 },
                 {
-                  "entity": "binary_sensor.0x00124b00292b8a08_contact",
-                  "icon": "mdi:door-open",
-                  "secondary_info": "last-updated",
-                  "name": "Tür"
+                  "type": "tile",
+                  "entity": "switch.geschirrspuler_muc_power",
+                  "name": "Power",
+                  "vertical": false,
+                  "features_position": "bottom"
                 },
                 {
-                  "type": "divider"
+                  "type": "tile",
+                  "entity": "sensor.geschirrspuler_muc_operation_state",
+                  "name": "State",
+                  "vertical": false,
+                  "features_position": "bottom"
                 },
                 {
-                  "entity": "sensor.0x00124b00292b8a08_battery",
-                  "secondary_info": "last-updated"
+                  "type": "tile",
+                  "entity": "sensor.geschirrspuler_muc_door",
+                  "name": "Tür",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "number.geschirrspuler_muc_start_in_relative",
+                  "name": "Startet in",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "select.geschirrspuler_muc_active_programme",
+                  "name": "Aktiv Program ",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.geschirrspuler_muc_extra_dry",
+                  "name": "Extra Dry",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "select.geschirrspuler_muc_selected_programme",
+                  "name": "Selected",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.geschirrspuler_muc_half_load",
+                  "name": "Half load",
+                  "vertical": false,
+                  "features_position": "bottom"
                 }
               ],
-              "state_color": true,
+              "column_span": 1,
+              "background": {
+                "opacity": 80
+              }
+            }
+          ],
+          "cards": [],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.geschirrspuler_muc_salt_lack",
+              "name": "Salt lack",
               "visibility": [
                 {
-                  "condition": "user",
-                  "users": [
-                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
-                    "71551fda67ef415691f9505fd1ac7304",
-                    "b0a10ec610ce4486a84e28d83cd758dc"
+                  "condition": "state",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "show_name": true,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.geschirrspuler_muc_salt_nearly_empty",
+              "name": "Salt nearly empty",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.geschirrspuler_muc_rinse_aid_lack",
+              "show_name": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.geschirrspuler_muc_rinse_aid_nearly_empty",
+              "show_name": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.geschirrspuler_muc_machine_care_reminder",
+              "show_name": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.geschirrspuler_muc_machine_care_and_filter_cleaning_reminder",
+              "show_name": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.geschirrspuler_muc_machine_care_and_low_maintenance_filter_cleaning_reminder",
+              "show_name": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.geschirrspuler_muc_smart_filter_cleaning_reminder",
+              "show_name": true,
+              "visibility": [
+                {
+                  "condition": "state",
+                  "state_not": "off"
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "icon": "mdi:clock",
+              "entity": "sensor.geschirrspuler_muc_programme_progress",
+              "label": "Progress - Remaining",
+              "content": "{% set progress = states('sensor.geschirrspuler_muc_programme_progress') %}\n{% set end_time = states('sensor.geschirrspuler_muc_programme_finish_time') | as_datetime %}\n\n{% if end_time is not none %}\n  {% set seconds = (end_time - now()).total_seconds() | int %}\n  {% if seconds > 0 %}\n    {% set hours = seconds // 3600 %}\n    {% set minutes = (seconds % 3600) // 60 %}\n    {% set time_str = (hours ~ 'h ') if hours > 0 else '' %}{% set time_str = time_str ~ minutes ~ ' min' %}\n    {{ progress }} % / {{ time_str }}\n  {% else %}\n    {{ progress }} % / 0 min\n  {% endif %}\n{% else %}\n  {{ progress }} % / N/A\n{% endif %}\n",
+              "visibility": [
+                {
+                  "condition": "state",
+                  "state_not": "unavailable"
+                },
+                {
+                  "condition": "and",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "state_not": "unknown"
+                    }
                   ]
                 }
-              ],
-              "show_header_toggle": false,
-              "title": "Kühlschrank Tür"
+              ]
             }
           ],
           "background": {
-            "image": "/api/image/serve/53b141f28080184bac03f12acc737bba/original"
+            "opacity": 100,
+            "alignment": "center",
+            "size": "cover",
+            "repeat": "repeat",
+            "attachment": "fixed",
+            "image": {
+              "media_content_id": "media-source://image_upload/53b141f28080184bac03f12acc737bba",
+              "media_content_type": "image/jpeg",
+              "metadata": {
+                "title": "1000050661.jpg",
+                "thumbnail": "/api/image/serve/53b141f28080184bac03f12acc737bba/256x256",
+                "media_class": "image",
+                "children_media_class": null,
+                "navigateIds": [
+                  {},
+                  {
+                    "media_content_type": "app",
+                    "media_content_id": "media-source://image_upload"
+                  }
+                ]
+              }
+            }
           }
         },
         {
@@ -2934,6 +3146,105 @@
               "user": "bdb6e97c89ed4e80a7734ac0cd129c4b"
             }
           ]
+        },
+        {
+          "title": "Küche",
+          "path": "kuche",
+          "icon": "mdi:countertop-outline",
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "group.kueche_lights"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "binary_sensor.motion_kuche",
+                  "icon": "mdi:motion-sensor",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "binary_sensor.motion_kuche_door_occupancy",
+                  "icon": "mdi:motion-sensor",
+                  "secondary_info": "last-changed",
+                  "name": "Motion above Door"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "binary_sensor.kuche_door_contact",
+                  "icon": "mdi:door-open",
+                  "secondary_info": "last-changed",
+                  "name": "Tür"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "sensor.kuche_door_contact_battery"
+                },
+                {
+                  "entity": "sensor.motion_kuche_door_battery"
+                }
+              ],
+              "title": "Lights Küche",
+              "state_color": true,
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "b0a10ec610ce4486a84e28d83cd758dc",
+                    "328b6ac946254e4aa6a7b2808a44ad35"
+                  ]
+                }
+              ],
+              "show_header_toggle": false
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "binary_sensor.0x00124b00292b8a08_contact",
+                  "icon": "mdi:door-open",
+                  "secondary_info": "last-updated",
+                  "name": "Tür"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "sensor.0x00124b00292b8a08_battery",
+                  "secondary_info": "last-updated"
+                }
+              ],
+              "state_color": true,
+              "visibility": [
+                {
+                  "condition": "user",
+                  "users": [
+                    "bdb6e97c89ed4e80a7734ac0cd129c4b",
+                    "71551fda67ef415691f9505fd1ac7304",
+                    "b0a10ec610ce4486a84e28d83cd758dc"
+                  ]
+                }
+              ],
+              "show_header_toggle": false,
+              "title": "Kühlschrank Tür"
+            }
+          ],
+          "background": {
+            "image": "/api/image/serve/53b141f28080184bac03f12acc737bba/original"
+          },
+          "visible": []
         }
       ]
     }
